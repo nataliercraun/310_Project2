@@ -1,0 +1,146 @@
+html, body {
+	font-family: 'Roboto', sans-serif;
+}
+
+#header {
+	line-height: 50px; 
+	box-sizing: border-box;
+	padding-bottom: 10px; 
+
+	/* Flex stuff */ 
+	display: flex;
+	justify-content: center;  
+	align-items: center;
+}
+
+#container {
+	/* Flex stuff */ 
+	display: flex;
+	justify-content: center;  
+	align-items: center;
+}
+
+#maxSizeCollageContainer {
+	height: 500px; 
+	width: 500px; 
+
+	/* Flex stuff */ 
+	display: flex;
+	justify-content: center;  
+	align-items: center;
+}
+
+#collageDisplay {
+	height: 500px; 
+	width: 500px; 
+	border: 2px solid black; 
+
+	/* Flex stuff */ 
+	display: flex;
+	justify-content: center;  
+	align-items: center;
+}
+
+#collageImage {
+	width: inherit;
+	height: inherit;
+}
+
+#collageContainer {
+	/* Flex stuff */ 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#optionsContainer {
+	box-sizing: border-box;
+	padding: 50px; 
+
+	/* Flex stuff */ 
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around; 
+}
+
+.horizRow {
+	/* Flex stuff */ 
+	display: flex;
+	flex-direction: row;
+}
+
+.horizRow {
+	box-sizing: border-box;
+	padding: 5px; 
+}
+
+label {
+    width:80px;
+    clear:left;
+    text-align:left;
+    padding-right:5px;
+}
+
+input, label {
+    float:left;
+}
+
+#widthSubmit {
+	margin-left: 5px; 
+}
+
+#heightSubmit {
+	margin-left: 5px; 
+}
+
+#buildCollageBtn {
+	width: 30%; 
+	box-sizing: border-box;
+	margin-left: 25%; 
+	margin-top: 10px; 
+}
+
+#saveBtns {
+
+	margin-left: 20px; 
+	/* Flex stuff */ 
+	display: flex;
+	flex-direction: column;
+}
+
+.save {
+	margin-top: 20px; 
+}
+
+#galleryContainer {
+	box-sizing: border-box;
+	padding-top: 20px; 
+	padding-bottom: 20px; 
+
+	/* Flex stuff */ 
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
+	overflow: scroll;
+}
+
+.galleryImages {
+	box-sizing: border-box;
+	padding: 5px; 
+
+	width: 100px; 
+	height: 100px; 
+}
+
+.galleryImages:hover {
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
