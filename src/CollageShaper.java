@@ -48,13 +48,13 @@ public class CollageShaper {
 		return image;
 	}
 	
-	public static void main(String args[]) throws IOException
-	{
-		CollageShaper cs = new CollageShaper(1028, 768);
-		BufferedImage testGreen = cs.getShape("testing shape");
-		File of = new File("localImages/testGreen.png");
-		ImageIO.write(testGreen, "png", of);
-	}
+//	public static void main(String args[]) throws IOException
+//	{
+//		CollageShaper cs = new CollageShaper(1028, 768);
+//		BufferedImage testGreen = cs.getShape("testing shape");
+//		File of = new File("localImages/testGreen.png");
+//		ImageIO.write(testGreen, "png", of);
+//	}
 }
 
 
