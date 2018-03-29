@@ -1,9 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <%--
   User: Natalie
   Date: 3/28/18
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html>
 	<head>
 		<!-- Google font --> 
