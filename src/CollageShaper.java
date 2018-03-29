@@ -26,25 +26,37 @@ public class CollageShaper {
 	
 	public BufferedImage getShape (String userInput)
 	{
+		//create BufferedImage for canvas, get g2 from this canvas 
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = image.createGraphics();
+		
+		//create font and transform
 		FontRenderContext frc = g2.getFontRenderContext();
 		AffineTransform atf = new AffineTransform();
 		Font f = new Font("Helvetica", 1, width/10);
 		
+		//retrieve user's string and create textlayout
 		String s = new String(userInput);
 		TextLayout tl = new TextLayout(s, f, frc);
 		
+		//create outline of letters and a bounding rectangle
 		Shape outline = tl.getOutline(null);
 		Rectangle r = outline.getBounds();
 		
+		//center it
 		atf = g2.getTransform();
 		atf.translate(width/2-(r.width/2), height/2+(r.height/2));
 		g2.transform(atf);
 		g2.setColor(Color.GREEN);
+		
+		//green outline
 		g2.draw(outline);
 		g2.setClip(outline);
+		
+		//green fill
 		g2.drawImage(img, r.x, r.y, r.width, r.height, null);
+		
+		//return image of user's string in green letters
 		return image;
 	}
 	
