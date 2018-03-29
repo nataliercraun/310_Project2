@@ -1,3 +1,5 @@
 /build/
 
 .settings/
+
+WebContent/.DS_Store
