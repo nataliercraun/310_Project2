@@ -29,7 +29,7 @@
 					<label for="dropdownContainer"> Filter Type </label>
 					<div id="dropdownContainer">
 					<select id="filterValue" onchange="filter()">
-					  <option value=""> Normal </option>
+					  <option value="none"> Normal </option>
 					  <option value="grayscale(100%)">Black & White </option>
 					  <option value="sepia(100%)">Sephia</option>
 					</select>
