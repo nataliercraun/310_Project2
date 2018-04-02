@@ -16,8 +16,8 @@ import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
 
 public class CollageShaper {
-	int width;
-	int height;
+	public int width;
+	public int height;
 	Image img;
 	public CollageShaper(int w, int h) throws IOException
 	{
