@@ -31,7 +31,7 @@
 					<select id="filterValue" onchange="filter()">
 					  <option value="none"> Normal </option>
 					  <option value="grayscale(100%)">Black & White </option>
-					  <option value="sepia(100%)">Sephia</option>
+					  <option value="sepia(100%)">Sepia</option>
 					</select>
 					</div>
 				</div>
