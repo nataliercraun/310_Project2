@@ -23,12 +23,12 @@ public class CollageShaper {
 	public CollageShaper(int w, int h) throws IOException
 	{
 		width = w; height = h;
-		img = ImageIO.read(new File("localImages/greenKey.jpg"));
+		img = ImageIO.read(getClass().getResource("localImages/greenKey.jpg"));
 	}
 	
 	public BufferedImage getShape (String userInput)
 	{
-		//create BufferedImage for canvas, get g2 from this canvas 
+		// create BufferedImage for canvas, get g2 from this canvas 
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = image.createGraphics();
 		
