@@ -5,7 +5,6 @@
 		<!-- Google font --> 
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 		<link rel="stylesheet" href="css/main.css" type="text/css">
-		<script src="main.js"></script>
 		<title> Main Web Page </title>
 	</head>
 	<body>
@@ -111,16 +110,18 @@
 			/* Function to populate collage display */
 			document.querySelector("#buildCollageBtn").onclick = function() {
 				if ((document.querySelector("#shapeBox").value != '') && (document.querySelector("#topicBox").value != '')) {
-					console.log("build collage button pressed"); 
+					console.log("build collage button pressed");
 					
 					
 
 					/* This is where we need to send data to the servlet and 
 					   generate the letter shaped collage  */
-					var topicString = document.getElementById("#topicBox").value;
-					var shapeString = document.getElementById("#shapeBox").value;
-					var bordersOption = document.getElementById("#borderBox").value;
-					var rotateOption = document.getElementById("#rotateBox").value;
+					var topicString = document.querySelector("#topicBox").value;
+					var shapeString = document.querySelector("#shapeBox").value;
+					var bordersOption = document.querySelector("#borderBox").checked;
+					var rotateOption = document.querySelector("#rotateBox").checked;
+					var width = document.querySelector("#widthBox").value;
+					var height = document.querySelector("#heightBox").value;
 					
 					var xhttp = new XMLHttpRequest();
 					
@@ -131,7 +132,8 @@
 						}
 					};
 
-					xhttp.open("GET", path+"/CollageBuilderServlet?topic="+topicString+"&shape="+shapeString+"&borders="+bordersOption+"&rotate="+rotateOption, true);
+					xhttp.open("GET", "http://localhost:8080/CSCI310-ProjectTwo"+"/CollageBuilderServlet?topic="+topicString
+							+"&shape="+shapeString+"&borders="+bordersOption+"&rotate="+rotateOption+"&width="+width+"&height="+height, true);
 					xhttp.send();
 
 					/* document.querySelector("#collageImage").src = "INSERT IMG URL HERE"; */
