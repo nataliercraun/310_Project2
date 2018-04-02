@@ -44,14 +44,20 @@ public class CollageBuilderServlet extends HttpServlet {
 		String rotate = request.getParameter("rotate");
 		String width = request.getParameter("width");
 		int widthInt;
-		if (width.equals("")) {
+		if(width == null)
+		{
+			widthInt = 500;
+		}
+		else if (width.equals("")) {
 			widthInt = 500;
 		} else {
 			widthInt = Integer.parseInt(width);
 		}
 		String height = request.getParameter("height");
 		int heightInt;
-		if (height.equals("")) {
+		if( height == null)
+			heightInt = 500;
+		else if (height.equals("")) {
 			heightInt = 500;
 		} else {
 			heightInt = Integer.parseInt(height);
@@ -59,11 +65,7 @@ public class CollageBuilderServlet extends HttpServlet {
 		
 		collageShaper = new CollageShaper(widthInt, heightInt);
 		
-		System.out.println("Hellooooo");
-		
 		BufferedImage collageShape = collageShaper.getShape(shape);
-		
-		System.out.println("HIHIHIHI");
 		
 		ImageIO.write(collageShape, "png", response.getOutputStream());
 	}

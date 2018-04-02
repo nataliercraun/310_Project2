@@ -1,11 +1,8 @@
 package collage;
 import java.awt.image.*;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -22,29 +19,15 @@ import java.awt.geom.AffineTransform;
 public class CollageShaper {
 	public int width;
 	public int height;
-	Image img;
 	
 	public CollageShaper(int w, int h) throws IOException
 	{
 		width = w; height = h;
 		
-		//img = ImageIO.read(new File("localImages/greenKey.jpg"));
 	}
 	
 	public BufferedImage getShape (String userInput)
 	{
-		PrintWriter writer;
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-	              new FileOutputStream("filename.txt"), "utf-8"))) {
-	   writer.write("something");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		// create BufferedImage for canvas, get g2 from this canvas 
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = image.createGraphics();
@@ -73,8 +56,7 @@ public class CollageShaper {
 		g2.setClip(outline);
 		
 		//green fill
-		g2.drawImage(img, r.x, r.y, r.width, r.height, null);
-		
+		g2.draw(new Rectangle(r.x, r.y, r.width, r.height));
 		//return image of user's string in green letters
 		return image;
 	}
@@ -88,5 +70,3 @@ public class CollageShaper {
 //		ImageIO.write(testGreen, "png", of);
 //	}
 }
-
-
