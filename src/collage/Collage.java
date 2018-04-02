@@ -1,4 +1,4 @@
-package classes;
+package collage;
 
 import java.io.Serializable;
 
@@ -16,5 +16,3 @@ public class Collage implements Serializable {
 	}
 }
 
-
-	   

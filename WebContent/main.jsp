@@ -112,9 +112,27 @@
 			document.querySelector("#buildCollageBtn").onclick = function() {
 				if ((document.querySelector("#shapeBox").value != '') && (document.querySelector("#topicBox").value != '')) {
 					console.log("build collage button pressed"); 
+					
+					
 
-					/* This is where we need to call the Google Search API and 
+					/* This is where we need to send data to the servlet and 
 					   generate the letter shaped collage  */
+					var topicString = document.getElementById("#topicBox").value;
+					var shapeString = document.getElementById("#shapeBox").value;
+					var bordersOption = document.getElementById("#borderBox").value;
+					var rotateOption = document.getElementById("#rotateBox").value;
+					
+					var xhttp = new XMLHttpRequest();
+					
+					xhttp.onreadystatechange = function() {
+						if (xhttp.responseText.length > 0){
+							/* document.querySelector("#collageImage").src = "INSERT IMG URL HERE"; */
+							
+						}
+					};
+
+					xhttp.open("GET", path+"/CollageBuilderServlet?topic="+topicString+"&shape="+shapeString+"&borders="+bordersOption+"&rotate="+rotateOption, true);
+					xhttp.send();
 
 					/* document.querySelector("#collageImage").src = "INSERT IMG URL HERE"; */
 
