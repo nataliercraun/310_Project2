@@ -70,3 +70,4 @@ public class CollageShaper {
 //		ImageIO.write(testGreen, "png", of);
 //	}
 }
+
