@@ -1,9 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<%--
-  User: Natalie
-  Date: 3/28/18
---%>
 <html>
 	<head>
 		<!-- Google font --> 
@@ -70,12 +66,6 @@
 				<button class="save" id="exportBtn"> Export </button>
 			</div>
 		</div>
-		<div id="galleryContainer"> 
-			<img class="galleryImages" src="images/fleece-pant.jpg">
-			<img class="galleryImages" src="images/tommy.jpg">
-			<img class="galleryImages" src="images/usc.jpg">
-			<img class="galleryImages" src="images/shorts.jpg">
-		</div>
 		<!-- Include Firebase -->
 		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
 		<!-- Initialize Firebase --> 
@@ -98,17 +88,6 @@
 		  	var storageRef = storage.ref();
 		</script>
 		<script> 
-
-			document.addEventListener('click', function(e) {
-			    e = e || window.event;
-			    var target = e.target; 
-			    console.log(e.target.className)
-			    if (e.target.className == 'galleryImages') {
-			    	var source = e.target.src; 
-			    	console.log(source); 
-			    	document.querySelector("#collageImage").src = source;
-			    }
-			}, false);
 
 			/* Function to change collage width */
 			document.querySelector("#widthSubmit").onclick = function() {
