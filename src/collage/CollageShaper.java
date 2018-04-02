@@ -56,7 +56,9 @@ public class CollageShaper {
 		g2.setClip(outline);
 		
 		//green fill
-		g2.draw(new Rectangle(r.x, r.y, r.width, r.height));
+		g2.setColor(Color.GREEN);
+
+		g2.draw(new Rectangle(0, 0, width, height));
 		//return image of user's string in green letters
 		return image;
 	}

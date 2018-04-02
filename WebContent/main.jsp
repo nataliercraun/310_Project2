@@ -122,17 +122,18 @@
 					var height = document.querySelector("#heightBox").value;
 					
 					var xhttp = new XMLHttpRequest();
-					xhttp.open("GET", "http://localhost:8080/CSCI310-ProjectTwo"+"/CollageBuilderServlet?topic="+topicString
+					
+					
+					xhttp.open("GET", "http://localhost:8080/310_Project2"+"/CollageBuilderServlet?topic="+topicString
 							+"&shape="+shapeString+"&borders="+bordersOption+"&rotate="+rotateOption+"&width="+width+"&height="+height, true);
 					xhttp.send();
+					
 					xhttp.onreadystatechange = function() {
 						if (xhttp.responseText.length > 0){
 							document.querySelector("#collageImage").src = xhttp.responseText;
 							console.log(xhttp.responseText);
 						}
 					};
-
-					
 
 					/* document.querySelector("#collageImage").src = "INSERT IMG URL HERE"; */
 
