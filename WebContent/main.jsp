@@ -1,9 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<%--
-  User: Natalie
-  Date: 3/28/18
---%>
 <html>
 	<head>
 		<!-- Google font --> 
@@ -61,7 +57,7 @@
 			<div id="maxSizeCollageContainer">
 				<div id="collageContainer" class="row">
 					<div id="collageDisplay" class="item">
-						 <img id="collageImage" src="cozy.jpg">
+						 <img id="collageImage" src="">
 					</div>
 				</div>
 			</div>
@@ -69,12 +65,6 @@
 				<button class="save" id="saveToHistoryBtn"> Save to History  </button>
 				<button class="save" id="exportBtn"> Export </button>
 			</div>
-		</div>
-		<div id="galleryContainer"> 
-			<img class="galleryImages" src="images/fleece-pant.jpg">
-			<img class="galleryImages" src="images/tommy.jpg">
-			<img class="galleryImages" src="images/usc.jpg">
-			<img class="galleryImages" src="images/shorts.jpg">
 		</div>
 		<!-- Include Firebase -->
 		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
@@ -99,17 +89,6 @@
 		</script>
 		<script> 
 
-			document.addEventListener('click', function(e) {
-			    e = e || window.event;
-			    var target = e.target; 
-			    console.log(e.target.className)
-			    if (e.target.className == 'galleryImages') {
-			    	var source = e.target.src; 
-			    	console.log(source); 
-			    	document.querySelector("#collageImage").src = source;
-			    }
-			}, false);
-
 			/* Function to change collage width */
 			document.querySelector("#widthSubmit").onclick = function() {
 				if (document.querySelector("#widthBox").value > 500) {
@@ -133,9 +112,27 @@
 			document.querySelector("#buildCollageBtn").onclick = function() {
 				if ((document.querySelector("#shapeBox").value != '') && (document.querySelector("#topicBox").value != '')) {
 					console.log("build collage button pressed"); 
+					
+					
 
-					/* This is where we need to call the Google Search API and 
+					/* This is where we need to send data to the servlet and 
 					   generate the letter shaped collage  */
+					var topicString = document.getElementById("#topicBox").value;
+					var shapeString = document.getElementById("#shapeBox").value;
+					var bordersOption = document.getElementById("#borderBox").value;
+					var rotateOption = document.getElementById("#rotateBox").value;
+					
+					var xhttp = new XMLHttpRequest();
+					
+					xhttp.onreadystatechange = function() {
+						if (xhttp.responseText.length > 0){
+							/* document.querySelector("#collageImage").src = "INSERT IMG URL HERE"; */
+							
+						}
+					};
+
+					xhttp.open("GET", path+"/CollageBuilderServlet?topic="+topicString+"&shape="+shapeString+"&borders="+bordersOption+"&rotate="+rotateOption, true);
+					xhttp.send();
 
 					/* document.querySelector("#collageImage").src = "INSERT IMG URL HERE"; */
 

@@ -1,4 +1,4 @@
-package classes;
+package collage;
 
 
 import java.awt.image.BufferedImage;
