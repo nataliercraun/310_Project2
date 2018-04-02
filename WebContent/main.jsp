@@ -76,7 +76,27 @@
 			<img class="galleryImages" src="images/usc.jpg">
 			<img class="galleryImages" src="images/shorts.jpg">
 		</div>
-
+		<!-- Include Firebase -->
+		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+		<!-- Initialize Firebase --> 
+		<script>
+			// Set up the configuration for firebase app
+			var config = {
+				apiKey: "AIzaSyC6ClUVqUFLcfXz8LZYZ0Fg1WpyRn1p-2Q",
+				authDomain: "cs310-p2groupn.firebaseapp.com",
+				databaseURL: "https://cs310-p2groupn.firebaseio.com",
+				projectId: "cs310-p2groupn",
+				storageBucket: "cs310-p2groupn.appspot.com",
+			};
+			firebase.initializeApp(config);
+			
+			// Get a reference to the database service
+			var database = firebase.database();
+			// Get a reference to the storage service, which is used to create references in your storage bucket
+		  	var storage = firebase.storage();
+			// Create a storage reference from our storage service
+		  	var storageRef = storage.ref();
+		</script>
 		<script> 
 
 			document.addEventListener('click', function(e) {
@@ -121,6 +141,17 @@
 
 				} else {
 					alert("Please ensure both shape and topic are given")
+				}
+			}
+			
+			/* Function to save currently displayed collage to history (database) */
+			document.querySelector("#saveToHistoryBtn").onclick = function() {
+				if (document.querySelector("#collageImage").getAttr('src') == "") { 
+					console.log("ERROR: save to history button pressed when no collage present");
+					/* If the src attribute is empty, this section of code should not be reachable */
+					/* The save to history button should be disabled */
+				} else {
+					/* This is where we should save to the database */
 				}
 			}
 
