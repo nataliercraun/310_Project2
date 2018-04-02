@@ -57,7 +57,7 @@
 			<div id="maxSizeCollageContainer">
 				<div id="collageContainer" class="row">
 					<div id="collageDisplay" class="item">
-						 <img id="collageImage" src="cozy.jpg">
+						 <img id="collageImage" src="">
 					</div>
 				</div>
 			</div>
