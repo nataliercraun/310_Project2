@@ -1,7 +1,11 @@
 package collage;
 import java.awt.image.*;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 import javax.imageio.ImageIO;
 
@@ -23,11 +27,24 @@ public class CollageShaper {
 	public CollageShaper(int w, int h) throws IOException
 	{
 		width = w; height = h;
-		img = ImageIO.read(getClass().getResource("localImages/greenKey.jpg"));
+		
+		//img = ImageIO.read(new File("localImages/greenKey.jpg"));
 	}
 	
 	public BufferedImage getShape (String userInput)
 	{
+		PrintWriter writer;
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+	              new FileOutputStream("filename.txt"), "utf-8"))) {
+	   writer.write("something");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// create BufferedImage for canvas, get g2 from this canvas 
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = image.createGraphics();

@@ -59,7 +59,11 @@ public class CollageBuilderServlet extends HttpServlet {
 		
 		collageShaper = new CollageShaper(widthInt, heightInt);
 		
+		System.out.println("Hellooooo");
+		
 		BufferedImage collageShape = collageShaper.getShape(shape);
+		
+		System.out.println("HIHIHIHI");
 		
 		ImageIO.write(collageShape, "png", response.getOutputStream());
 	}
