@@ -19,6 +19,7 @@ public class CollageShaper {
 	public int width;
 	public int height;
 	Image img;
+	
 	public CollageShaper(int w, int h) throws IOException
 	{
 		width = w; height = h;
@@ -61,6 +62,7 @@ public class CollageShaper {
 		return image;
 	}
 	
+//test main
 //	public static void main(String args[]) throws IOException
 //	{
 //		CollageShaper cs = new CollageShaper(1028, 768);
