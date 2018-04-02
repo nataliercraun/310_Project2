@@ -1,12 +1,13 @@
 package servlets;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,9 +35,8 @@ public class CollageBuilderServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("image/png");
 		
 		String topic = request.getParameter("topic");
 		String shape = request.getParameter("shape");
@@ -67,7 +67,22 @@ public class CollageBuilderServlet extends HttpServlet {
 		
 		BufferedImage collageShape = collageShaper.getShape(shape);
 		
-		ImageIO.write(collageShape, "png", response.getOutputStream());
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ImageIO.write(collageShape, "png", baos);
+		baos.flush();
+		byte[] imageInByteArray = baos.toByteArray();
+		baos.close();
+		String b64String = "data:image/png;base64, " + javax.xml.bind.DatatypeConverter.printBase64Binary(imageInByteArray);
+		
+		try {
+			PrintWriter pw = response.getWriter();
+		    pw.print(b64String);
+		}
+		catch (FileNotFoundException e) {
+		    e.getMessage();
+		}
+		
+		return;
 	}
 
 	/**

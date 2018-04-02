@@ -112,8 +112,6 @@
 				if ((document.querySelector("#shapeBox").value != '') && (document.querySelector("#topicBox").value != '')) {
 					console.log("build collage button pressed");
 					
-					
-
 					/* This is where we need to send data to the servlet and 
 					   generate the letter shaped collage  */
 					var topicString = document.querySelector("#topicBox").value;
@@ -124,17 +122,17 @@
 					var height = document.querySelector("#heightBox").value;
 					
 					var xhttp = new XMLHttpRequest();
-					
-					xhttp.onreadystatechange = function() {
-						if (xhttp.responseText.length > 0){
-							/* document.querySelector("#collageImage").src = "INSERT IMG URL HERE"; */
-							
-						}
-					};
-
 					xhttp.open("GET", "http://localhost:8080/CSCI310-ProjectTwo"+"/CollageBuilderServlet?topic="+topicString
 							+"&shape="+shapeString+"&borders="+bordersOption+"&rotate="+rotateOption+"&width="+width+"&height="+height, true);
 					xhttp.send();
+					xhttp.onreadystatechange = function() {
+						if (xhttp.responseText.length > 0){
+							document.querySelector("#collageImage").src = xhttp.responseText;
+							console.log(xhttp.responseText);
+						}
+					};
+
+					
 
 					/* document.querySelector("#collageImage").src = "INSERT IMG URL HERE"; */
 
