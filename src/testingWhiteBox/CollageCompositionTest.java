@@ -2,14 +2,24 @@ package testingWhiteBox;
 
 import junit.framework.TestCase;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Vector;
+
+import javax.imageio.ImageIO;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import collage.CollageMaker;
 import collage.CollageShaper;
+import collage.ImageSourcer;
 public class CollageCompositionTest{
 	CollageMaker CMTest;
 	CollageShaper CSHelper;
+	ImageSourcer ISHelper;
+	Vector<BufferedImage> images;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception
 	{
@@ -20,6 +30,8 @@ public class CollageCompositionTest{
 	public void setUp() throws Exception {
 		CMTest = new CollageMaker();
 		CSHelper = new CollageShaper(1080, 768);
+		ISHelper = new ImageSourcer();
+		images = ISHelper.getImages("Dog");
 	}
 	
 	@Test
@@ -30,7 +42,10 @@ public class CollageCompositionTest{
 	
 	@Test
 	//Test case of collage creation from collage shape
-	public void testMakeCollage(){
-		assert (CMTest.makeCollage(CSHelper.getShape("Test string")) != null);
+	public void testMakeCollage() throws IOException{
+		BufferedImage testCollage = CMTest.makeCollage(CSHelper.getShape("short"), images);
+		File of = new File("localImages/testCollage.png");
+		ImageIO.write(testCollage, "png", of);
+		assert(testCollage != null);
 	}
 }

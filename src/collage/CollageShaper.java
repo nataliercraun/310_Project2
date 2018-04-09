@@ -35,7 +35,7 @@ public class CollageShaper {
 		//create font and transform
 		FontRenderContext frc = g2.getFontRenderContext();
 		AffineTransform atf = new AffineTransform();
-		Font f = new Font("Helvetica", 1, width/10);
+		Font f = new Font("Helvetica", 1, width/userInput.length() );
 		
 		//retrieve user's string and create textlayout
 		String s = new String(userInput);
@@ -59,7 +59,7 @@ public class CollageShaper {
 //	public static void main(String args[]) throws IOException
 //	{
 //		CollageShaper cs = new CollageShaper(1028, 768);
-//		BufferedImage testGreen = cs.getShape("testing shape");
+//		BufferedImage testGreen = cs.getShape("short");
 //		File of = new File("localImages/testGreen.png");
 //		ImageIO.write(testGreen, "png", of);
 //	}
