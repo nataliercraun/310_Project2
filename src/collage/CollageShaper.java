@@ -50,16 +50,8 @@ public class CollageShaper {
 		atf.translate(width/2-(r.width/2), height/2+(r.height/2));
 		g2.transform(atf);
 		g2.setColor(Color.GREEN);
-		
-		//green outline
-		g2.draw(outline);
-		g2.setClip(outline);
-		
-		//green fill
-		g2.setColor(Color.GREEN);
+		tl.draw(g2, 0, 0);
 
-		g2.draw(new Rectangle(0, 0, width, height));
-		//return image of user's string in green letters
 		return image;
 	}
 	
