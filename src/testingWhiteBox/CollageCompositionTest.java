@@ -1,7 +1,5 @@
 package testingWhiteBox;
 
-import junit.framework.TestCase;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +13,7 @@ import org.junit.Test;
 import collage.CollageMaker;
 import collage.CollageShaper;
 import collage.ImageSourcer;
+
 public class CollageCompositionTest{
 	CollageMaker CMTest;
 	CollageShaper CSHelper;
@@ -43,7 +42,7 @@ public class CollageCompositionTest{
 	@Test
 	//Test case of collage creation from collage shape
 	public void testMakeCollage() throws IOException{
-		BufferedImage testCollage = CMTest.makeCollage(CSHelper.getShape("short"), images);
+		BufferedImage testCollage = CMTest.makeCollage(CSHelper.getShape("short"), CSHelper.getOutline(), images);
 		File of = new File("localImages/testCollage.png");
 		ImageIO.write(testCollage, "png", of);
 		assert(testCollage != null);

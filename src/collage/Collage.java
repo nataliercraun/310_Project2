@@ -3,9 +3,6 @@ package collage;
 import java.io.Serializable;
 
 public class Collage implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public String topic;
 	public String url;

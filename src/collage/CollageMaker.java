@@ -2,6 +2,7 @@ package collage;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
@@ -14,7 +15,7 @@ public class CollageMaker {
 		rotation = true; 
 	}
 
-	public BufferedImage makeCollage(BufferedImage shape, Vector<BufferedImage> sourceImages) {
+	public BufferedImage makeCollage(BufferedImage shape, Shape ol, Vector<BufferedImage> sourceImages) {
 		//Set scalars
 		tileWidth = shape.getWidth()/15;
 		tileHeight = shape.getHeight()/15;
@@ -32,14 +33,16 @@ public class CollageMaker {
 		final int ymax = shape.getHeight();
 		int numPlaced = 0;
 		
+		//g2d.setClip(ol);
+		
 		for (int y = 0; y < ymax; y++) {
 			for (int x = 0; x < xmax; x++) {
 				int xPos = x;
 				int yPos = y;
 				int pixel = shape.getRGB(x, y);
-				if (pixel == -16711936 && numPlaced < 30) {
+				if (pixel == -16711936 && numPlaced < 29) {
 					AffineTransform at = new AffineTransform();
-					at.translate(xPos, yPos);
+					at.translate(xPos - tileWidth/2, yPos);
 					//at.rotate(rotationValue);
 					g2d.drawImage(destImages.elementAt(numPlaced), at, null);
 					numPlaced++;

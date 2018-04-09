@@ -19,11 +19,10 @@ import java.awt.geom.AffineTransform;
 public class CollageShaper {
 	public int width;
 	public int height;
-	
+	Shape ol;
 	public CollageShaper(int w, int h) throws IOException
 	{
 		width = w; height = h;
-		
 	}
 	
 	public BufferedImage getShape (String userInput)
@@ -43,6 +42,7 @@ public class CollageShaper {
 		
 		//create outline of letters and a bounding rectangle
 		Shape outline = tl.getOutline(null);
+		ol = outline;
 		Rectangle r = outline.getBounds();
 		
 		//center it
@@ -54,7 +54,10 @@ public class CollageShaper {
 
 		return image;
 	}
-	
+	public Shape getOutline()
+	{
+		return ol;
+	}
 //test main
 //	public static void main(String args[]) throws IOException
 //	{
