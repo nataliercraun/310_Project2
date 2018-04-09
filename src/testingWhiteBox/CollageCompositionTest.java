@@ -6,10 +6,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import collage.CollageMaker;
-
+import collage.CollageShaper;
 public class CollageCompositionTest{
 	CollageMaker CMTest;
-	
+	CollageShaper CSHelper;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception
 	{
@@ -19,6 +19,7 @@ public class CollageCompositionTest{
 	@Before
 	public void setUp() throws Exception {
 		CMTest = new CollageMaker();
+		CSHelper = new CollageShaper(1080, 768);
 	}
 	
 	@Test
@@ -30,8 +31,6 @@ public class CollageCompositionTest{
 	@Test
 	//Test case of collage creation from collage shape
 	public void testMakeCollage(){
-		//Not implemented
-		//assert(CMTest.makeCollage(new BufferedImage("testShape.jpg") != null);
-		
+		assert (CMTest.makeCollage(CSHelper.getShape("Test string")) != null);
 	}
 }
