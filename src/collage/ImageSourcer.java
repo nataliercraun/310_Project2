@@ -52,7 +52,7 @@ public class ImageSourcer {
 				try {
 					query = URLEncoder.encode(searchText, "UTF-8");  // url encoding the raw search string
 				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
+
 				}
 				
 				String key = API_KEY; 
@@ -72,7 +72,7 @@ public class ImageSourcer {
 					conn.setRequestMethod("GET");
 					conn.setRequestProperty("Accept", "application/json");
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					
 				}
 				
 				// String builder to read data from Google's input stream and convert into a JSON object for parsing
@@ -90,7 +90,7 @@ public class ImageSourcer {
 					// Terminate connection with Google
 					conn.disconnect();
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					
 				}
 				// Convert result to JSON object and then parse that JSON object to extract data
 				String imageUrl = null; // Variable to hold current image URL as we iterate through data
@@ -101,13 +101,13 @@ public class ImageSourcer {
 						imageURLs.addElement(imageUrl);
 					}
 				} catch (JSONException e) {
-					e.printStackTrace();
+					
 				}
 			}
 		} catch (Exception e)
 		{
 			// If any exception occurs in the image sourcing, assume Google failure 
-			e.printStackTrace();
+			
 		}
 		// Check that at least REQUIRED_IMAGES image URLs were found
 		if (imageURLs.size() >= REQUIRED_IMAGES) {
@@ -121,9 +121,9 @@ public class ImageSourcer {
 					// Store in Vector<BufferedImage>
 					images.add(img);
 				} catch (MalformedURLException e) {
-					e.printStackTrace();
+					
 				} catch (IOException e) {
-					e.printStackTrace();
+					
 				}
 			}
 			return images;
