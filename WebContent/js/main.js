@@ -1,6 +1,14 @@
 /**
  * 
  */
+
+// Get a reference to the storage service, which is used to create references in your storage bucket
+var storage = firebase.storage();
+
+// Create a storage reference from our storage service
+var storageRef = storage.ref();
+
+
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		// User is signed in.
@@ -79,12 +87,53 @@ document.querySelector("#buildCollageBtn").onclick = function() {
 
 /* Function to save currently displayed collage to history (database) */
 document.querySelector("#saveToHistoryBtn").onclick = function() {
-	if (document.querySelector("#collageImage").getAttr('src') == "") { 
+	if (document.querySelector("#collageImage").getAttribute('src') == "") { 
 		console.log("ERROR: save to history button pressed when no collage present");
 		/* If the src attribute is empty, this section of code should not be reachable */
 		/* The save to history button should be disabled */
 	} else {
-		/* This is where we should save to the database */
+		/* Create reference to uploaded image */
+		var collageRef = storageRef.child('collage.png');
+		
+		/* Save the Base64 formatted string to the database */
+		var image = document.querySelector("#collageImage").src;
+		
+		/* Variable for upload task to track status of upload */
+		var uploadTask = collageRef.putString(image, 'data_url');
+		
+		uploadTask.on('state_changed', function(snapshot){
+			// Observe state change events such as progress, pause, and resume
+			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+			var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+			console.log('Upload is ' + progress + '% done');
+			switch (snapshot.state) {
+			    case firebase.storage.TaskState.PAUSED: // or 'paused'
+			    		console.log('Upload is paused');
+			    		break;
+			    case firebase.storage.TaskState.RUNNING: // or 'running'
+			    		console.log('Upload is running');
+			    		break;
+			}
+		}, function(error) {
+			// Handle unsuccessful uploads
+			console.log("UNSUCCESSFUL: " + error);
+		}, function() {
+			// Handle successful uploads on complete
+			var downloadURL = uploadTask.snapshot.downloadURL;
+		});
+		
+		var downloadURL = collageRef.getDownloadURL().then(function(url) {
+			
+		});
+		
+		firebase.database().ref('images').set({
+			email: firebase.auth().currentUser.email,
+			collageURL: downloadURL,
+		});
+		
+		document.querySelector("#collageImage").getAttribute('src') = downloadURL;
+		
+		console.log("REPLACED");
 	}
 }
 
