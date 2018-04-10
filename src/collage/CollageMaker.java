@@ -53,8 +53,10 @@ public class CollageMaker {
 					//g2d.setClip(ol);
 					g2d.drawImage(destImages.elementAt(numPlaced), at, null);
 					numPlaced++;
-					File of = new File("localImages/testCollage"+numPlaced+".png");
-					ImageIO.write(shape, "png", of);
+					
+					//testing
+					//File of = new File("localImages/testCollage"+numPlaced+".png");
+					//ImageIO.write(shape, "png", of);
 				}
 			}
 		}
