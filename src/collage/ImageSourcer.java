@@ -20,7 +20,7 @@ import org.json.JSONObject;
 public class ImageSourcer {
 
 	// Configuration Variables
-	private final int REQUIRED_IMAGES = 30; // Number of images needed to build collage
+	private final int REQUIRED_IMAGES = 35; // Number of images needed to build collage
 	private final String API_KEY = "AIzaSyARWguCMARs26vivRF2GgFooxtEAchKS7k"; // Google API key
 	private final String SEARCH_ENGINE_KEY = "004843956391315063069:wnj8zpugysm"; // Custom Search Engine key provided by Google
 	private final String SEARCH_FILETYPES = "png,jpg"; // Desired file types for search

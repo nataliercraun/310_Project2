@@ -5,20 +5,25 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Vector;
+
+import javax.imageio.ImageIO;
 
 public class CollageMaker {
 	int tileWidth, tileHeight;
+	final int tileSize = 15;
 	boolean rotation;
 	public CollageMaker()
 	{
 		rotation = true; 
 	}
 
-	public BufferedImage makeCollage(BufferedImage shape, Shape ol, Vector<BufferedImage> sourceImages) {
+	public BufferedImage makeCollage(BufferedImage shape, Shape ol, Vector<BufferedImage> sourceImages) throws IOException {
 		//Set scalars
-		tileWidth = shape.getWidth()/15;
-		tileHeight = shape.getHeight()/15;
+		tileWidth = shape.getWidth()/tileSize;
+		tileHeight = shape.getHeight()/tileSize;
 		
 		//Vector of scaled images
 		Vector<BufferedImage> destImages = new Vector<BufferedImage>();
@@ -33,19 +38,23 @@ public class CollageMaker {
 		final int ymax = shape.getHeight();
 		int numPlaced = 0;
 		
-		//g2d.setClip(ol);
+		
 		
 		for (int y = 0; y < ymax; y++) {
 			for (int x = 0; x < xmax; x++) {
 				int xPos = x;
 				int yPos = y;
 				int pixel = shape.getRGB(x, y);
-				if (pixel == -16711936 && numPlaced < 29) {
+				if (pixel == -16711936 && numPlaced < sourceImages.size()) {
 					AffineTransform at = new AffineTransform();
 					at.translate(xPos - tileWidth/2, yPos);
 					//at.rotate(rotationValue);
+					//g2d.draw(ol);
+					//g2d.setClip(ol);
 					g2d.drawImage(destImages.elementAt(numPlaced), at, null);
 					numPlaced++;
+					File of = new File("localImages/testCollage"+numPlaced+".png");
+					ImageIO.write(shape, "png", of);
 				}
 			}
 		}

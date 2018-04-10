@@ -54,6 +54,7 @@ public class CollageShaper {
 
 		return image;
 	}
+	
 	public Shape getOutline()
 	{
 		return ol;
