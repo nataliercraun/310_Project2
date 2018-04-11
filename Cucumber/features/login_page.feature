@@ -31,7 +31,7 @@ Scenario: If the incorrect username and password are provided, user stays on log
 
 	When I open loginpage
 	And I type "wrong@usc.edu" into "#emailinput"
-	And I type "wrong" into "#passinput" 
+	And I type "wrongpassword" into "#passinput" 
 	And I click on "#acct_button"
 	And I sleep for time "5"
 	Then I see the current page is "/310_Project2/login.jsp"
@@ -41,12 +41,12 @@ Scenario: If a user creates an account, then they can login
 	When I open loginpage
 	And I click on "#newUserClick"
 	And I type "craun@usc.edu" into "#newemail"
-	And I type "dogs" into "#newpw"
-	And I type "dogs" into "#confirmpw"
+	And I type "9829304239" into "#newpw"
+	And I type "9829304239" into "#confirmpw"
 	And I click on "#register_button"
 	When I open loginpage
 	And I type "craun@usc.edu" into "#emailinput"
-	And I type "dogs" into "#passinput"
+	And I type "9829304239" into "#passinput"
 	And I click on "#acct_button"
 	And I sleep for time "3"
 	Then I see the current page is "/310_Project2/main.jsp"
