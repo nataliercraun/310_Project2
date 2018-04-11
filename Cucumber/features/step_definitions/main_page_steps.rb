@@ -1,5 +1,5 @@
-When(/^I open localhost:(\d+)$/) do |arg1|
-	visit 'localhost:' + arg1
+When(/^I open mainpage$/) do
+	visit 'http://localhost:8080/310_Project2/main.jsp'
 end
 
 Then(/^I see "([^"]*)" on attribute "([^"]*)" on id "([^"]*)"$/) do |arg1, arg2, arg3|
