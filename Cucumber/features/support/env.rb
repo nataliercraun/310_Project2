@@ -9,3 +9,4 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.default_driver = :chrome
+Capybara.ignore_hidden_elements = false
