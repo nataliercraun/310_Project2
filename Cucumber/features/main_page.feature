@@ -78,6 +78,17 @@ Scenario: Filter option selector changes the collage display filter
 	When I open mainpage
 	Then I see the attribute "value" of id "#filterValue" is seen on attribute "filter" on id "#collageDisplay"
 
+Scenario: If the user clicks the logout button, they are directed back to the login page  
+
+	When I open mainpage
+	And I click "#logOutBtn"
+	And I sleep for time "3"
+	Then I see an alert that says "You were logged out."
+	And I close the alert 
+	Then I see the current page is "/310_Project2/login.jsp"
+
+
+
 
 
 

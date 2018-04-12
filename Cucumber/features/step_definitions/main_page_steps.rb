@@ -18,4 +18,14 @@ Then(/^I see the attribute "([^"]*)" of id "([^"]*)" is seen on attribute "([^"]
 	expect(find(:css, arg4).native.css_value(arg3) == find(arg2)['value']).to be true
 end
 
+Then(/^I see an alert that says "([^"]*)"$/) do |arg1|
+  	alert = page.driver.browser.switch_to.alert
+	puts(alert.text)
+	alert.text.should eq(arg1)
+end
+
+Then(/^I close the alert$/) do
+  	alert = page.driver.browser.switch_to.alert
+	alert.send('accept')
+end
 
