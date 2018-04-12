@@ -52,6 +52,21 @@ Scenario: If a user creates an account, then they can login
 	Then I see the current page is "/310_Project2/main.jsp"
 	And I click "#logOutBtn"
 	And I sleep for time "3"
+
+Scenario: User is not allowed to create password of less than 6 characters 
+
+	When I open loginpage
+	And I click on "#newUserClick"
+	And I type "tommytrojan@usc.edu" into "#newemail"
+	And I type "dog" into "#newpw"
+	And I type "dog" into "#confirmpw"
+	And I click on "#register_button"
+	When I open loginpage
+	And I type "tommytrojan@usc.edu" into "#emailinput"
+	And I type "dog" into "#passinput"
+	And I click on "#acct_button"
+	And I sleep for time "3"
+	Then I see the current page is "/310_Project2/login.jsp"
 	
 	
 
