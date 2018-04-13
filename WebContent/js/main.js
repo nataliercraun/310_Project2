@@ -52,8 +52,7 @@ document.querySelector("#logOutBtn").onclick = function() {
 document.querySelector("#buildCollageBtn").onclick = function() {
 	if ((document.querySelector("#shapeBox").value != '') && (document.querySelector("#topicBox").value != '')) {
 		console.log("build collage button pressed");
-		/* This is where we need to send data to the servlet and 
-		   generate the letter shaped collage  */
+		/* This is where we need to send data to the servlet and generate the letter shaped collage */
 		var topicString = document.querySelector("#topicBox").value;
 		var shapeString = document.querySelector("#shapeBox").value;
 		var bordersOption = document.querySelector("#borderBox").checked;
@@ -71,13 +70,10 @@ document.querySelector("#buildCollageBtn").onclick = function() {
 				console.log(xhttp.responseText);
 			}
 		};
-		/* document.querySelector("#collageImage").src = "INSERT IMG URL HERE"; */
 	} else {
 		alert("Please ensure both shape and topic are given")
 	}
 }
-
-
 
 /* Function to save currently displayed collage to history (database) */
 document.querySelector("#saveToHistoryBtn").onclick = function() {
@@ -92,15 +88,12 @@ document.querySelector("#saveToHistoryBtn").onclick = function() {
 		/* Create metadata */
 		var metadata = {	 contentType: 'image/png' };
 		/* Variable for upload task to track status of upload */
-		collageRef.putString(image, 'data_url', metadata);
-		
-		storageRef.child(document.querySelector("#topicBox").value + '.png').getDownloadURL().then(function(url) {
-//			document.querySelector('#resultDownload').src = url;
+		collageRef.putString(image, 'data_url', metadata).then(function(snapshot){
 			console.log("url success, attempting to push to DB");
 			
 			firebase.database().ref('savedCollages').push().set({
 				email: firebase.auth().currentUser.email,
-				collageURL: url,
+				collageURL: snapshot.downloadURL,
 			});
 			console.log("DB push success!");
 		}).catch(function(error) {
