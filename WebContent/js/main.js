@@ -4,9 +4,12 @@
 
 // Get a reference to the storage service, which is used to create references in your storage bucket
 var storage = firebase.storage();
-
 // Create a storage reference from our storage service
 var storageRef = storage.ref();
+//Create a database reference from our database service
+var databaseRef = firebase.database().ref();
+// Array of saved urls for gallery display
+var galleryImageUrls = [];
 
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
@@ -67,7 +70,6 @@ document.querySelector("#buildCollageBtn").onclick = function() {
 		xhttp.onreadystatechange = function() {
 			if (xhttp.responseText.length > 0){
 				document.querySelector("#collageImage").src = xhttp.responseText;
-				console.log(xhttp.responseText);
 			}
 		};
 	} else {
@@ -96,11 +98,33 @@ document.querySelector("#saveToHistoryBtn").onclick = function() {
 				collageURL: snapshot.downloadURL,
 			});
 			console.log("DB push success!");
+			
+			updateGalleryArray();
+			
 		}).catch(function(error) {
 			console.log("No URL");
 			console.log(error);
 		});
 	}
+}
+
+/* Function to update history gallery */
+function updateGalleryArray() {
+	/* Clear the gallery images so we don't double push */
+	galleryImageUrls = [];
+	firebase.database().ref('savedCollages').once("value").then(function(snapshot) {
+		for (var key in snapshot.val()) {
+			/* If the email of image matches current user, push to gallery array */
+			if (snapshot.val()[key].email === firebase.auth().currentUser.email){
+				var url = snapshot.val()[key].collageURL;
+				galleryImageUrls.push(url);
+			}
+		}
+		for (var urlIndex in galleryImageUrls) {
+			console.log("url: " + galleryImageUrls[urlIndex]);
+		}
+		/* Update the gallery history here */
+	});
 }
 
 /* Allows submit buttons to be triggered when the user presses 'enter' */
