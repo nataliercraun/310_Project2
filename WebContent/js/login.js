@@ -45,6 +45,7 @@ document.getElementById("register_button").onclick = function() {
 	if (password != confirmPassword) {
 		// OUTPUT ERROR HERE
 		console.log("passwords do not match");
+		alert("Passwords do not match!");
 	}
 	else {
 		console.log("creating user");
@@ -53,6 +54,8 @@ document.getElementById("register_button").onclick = function() {
 			var errorCode = error.code;
 			var errorMessage = error.message;
 			// ...
+			console.log(error.code + errorMessage);
+			alert(error.code + " " + errorMessage);
 		});
 	}
 }
