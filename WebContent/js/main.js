@@ -50,7 +50,10 @@ document.querySelector("#logOutBtn").onclick = function() {
 		alert("Something went wrong with log out")
 	});
 }
+<<<<<<< HEAD
 /* Function to display options */
+=======
+>>>>>>> cf53dc6a4f8fce19bcb7e6637ca181e87e375c36
 document.querySelector("#collageOptionsBtn").onclick = function() {
 		var options = document.getElementById("optionsMenu");
 		var button = document.getElementById("collageOptionsBtn");
@@ -67,7 +70,10 @@ document.querySelector("#collageOptionsBtn").onclick = function() {
 		
 	
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf53dc6a4f8fce19bcb7e6637ca181e87e375c36
 /* Function to populate collage display */
 document.querySelector("#buildCollageBtn").onclick = function() {
 	if ((document.querySelector("#shapeBox").value != '') && (document.querySelector("#topicBox").value != '')) {
