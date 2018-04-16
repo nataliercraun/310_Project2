@@ -50,7 +50,22 @@ document.querySelector("#logOutBtn").onclick = function() {
 		alert("Something went wrong with log out")
 	});
 }
-
+document.querySelector("#collageOptionsBtn").onclick = function() {
+		var options = document.getElementById("optionsMenu");
+		var button = document.getElementById("collageOptionsBtn");
+		//classToChange.classList.toggle("optionsMenuShown");
+		if (button.innerHTML == " Collage Options "){
+			console.log("test");
+			options.setAttribute('class', 'optionsMenuShown');
+			button.innerHTML = " Hide ";
+		}
+		else {
+			options.setAttribute('class', 'optionsMenu');
+			button.innerHTML = " Collage Options ";
+		}
+		
+	
+}
 /* Function to populate collage display */
 document.querySelector("#buildCollageBtn").onclick = function() {
 	if ((document.querySelector("#shapeBox").value != '') && (document.querySelector("#topicBox").value != '')) {
