@@ -3,14 +3,26 @@ html, body {
 }
 
 #header {
-	line-height: 50px; 
-	box-sizing: border-box;
-	padding-bottom: 10px; 
-
+	-webkit-animation: fadein 2s linear forwards;
+    animation: fadein 2s linear forwards;
+    color: white;
+    text-shadow: 3px 2px rgba(52, 128, 193, 1);
+    font-size: 50px;
 	/* Flex stuff */ 
 	display: flex;
 	justify-content: center;  
 	align-items: center;
+}
+
+#logOutBtn {
+	cursor: pointer;
+	background-color: red;
+	color: white;
+	border: 1px white;
+	width: 80px;
+	height: 40px;
+	margin-top: 20px;
+	
 }
 
 #container {
@@ -53,14 +65,48 @@ html, body {
 	justify-content: center;
 }
 
-#optionsContainer {
+#topContainer {
+	position: absolute;
+	top: 0px;
+	background-image: url('../img/dog.jpg');
+	width: 100%;
+	height: 15%;
+	
+}
+
+#leftContainer {
+	display: none;
 	box-sizing: border-box;
 	padding: 50px; 
-
+	height: 450px;
+	width: 420px;
 	/* Flex stuff */ 
-	display: flex;
+	display: block;
 	flex-direction: column;
-	justify-content: space-around; 
+	/*justify-content: space-around; */
+}
+
+
+#collageOptionsBtn {
+	cursor: pointer;
+	background-color: blue;
+	color: white;
+	border: 1px white;
+	width: 60%;
+	height: 10% 
+	box-sizing: border-box;
+	margin-left: 25%; 
+	margin-top: 20px; 
+}
+
+.optionsMenu{
+	display: none;
+}
+
+.optionsMenuShown {
+	-webkit-animation: fadein 1s linear forwards;
+    animation: fadein 1s linear forwards;
+	
 }
 
 .horizRow {
@@ -94,11 +140,17 @@ input, label {
 }
 
 #buildCollageBtn {
-	width: 30%; 
+	cursor: pointer;
+	background-color: green;
+	color: white;
+	border: 1px white;
+	width: 60%;
+	height: 30%; 
 	box-sizing: border-box;
 	margin-left: 25%; 
 	margin-top: 10px; 
 }
+
 
 #saveBtns {
 
@@ -125,6 +177,34 @@ input, label {
 	overflow: scroll;
 }
 
+#saveToHistoryBtn {
+	cursor: pointer;
+	background-color: #F4D03F;
+	color: white;
+	border: 1px white;
+	width: 100%;
+	height: 30%; 
+	box-sizing: border-box;
+	margin-left: 25%; 
+	margin-top: 10px;
+	justify-content: center;
+	
+}
+
+#exportBtn {
+	cursor: pointer;
+	background-color: #900C3F;
+	color: white;
+	border: 1px white;
+	width: 100%;
+	height: 30%; 
+	box-sizing: border-box;
+	margin-left: 25%; 
+	margin-top: 20px;
+	justify-content: center;
+	
+}
+
 .galleryImages {
 	box-sizing: border-box;
 	padding: 5px; 
@@ -135,6 +215,16 @@ input, label {
 
 .galleryImages:hover {
 	cursor: pointer;
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 

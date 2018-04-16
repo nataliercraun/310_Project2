@@ -8,13 +8,15 @@
 		<title> Main Web Page </title>
 	</head>
 	<body>
+	<div id= "topContainer">
 		<h1 id="header">
 			Collage Display 
 		</h1>
+	</div>
+	<br><br><br><br>
 		<button id="logOutBtn"> Log Out </button>
 		<div id="container">
-			<div id="optionsContainer">
-				<h2> Build Collage </h2>
+			<div id="leftContainer">
 				<div class="horizRow">
 					<label for="topicBox"> Topic </label>
 					<input id="topicBox" type="text"> 
@@ -24,6 +26,8 @@
 					<input id="shapeBox" type="text"> 
 				</div>
 				<button id="buildCollageBtn" type="submit"> Build Collage </button>
+				<button id="collageOptionsBtn"> Collage Options </button>
+				<div id = "optionsMenu" class="optionsMenu">
 				<h2> Collage Options  </h2>
 				<div class="horizRow">
 					<label for="dropdownContainer"> Filter Type </label>
@@ -35,6 +39,7 @@
 					</select>
 					</div>
 				</div>
+				
 				<div class="horizRow">
 					<label for="borderBox"> Borders </label>
 					<input id="borderBox" type="checkbox"> 
@@ -53,6 +58,7 @@
 					<input id="heightBox" type="text" placeholder="Max 500px">
 					<button id="heightSubmit" type="submit"> Update </button>
 				</div>
+			</div>
 			</div>
 			<div id="maxSizeCollageContainer">
 				<div id="collageContainer" class="row">
@@ -88,6 +94,7 @@
 		  	var storageRef = storage.ref();
 		</script>
 		
-		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/main.js">
+		</script>
 	</body>
 </html>
