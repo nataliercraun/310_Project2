@@ -1,5 +1,5 @@
 When(/^I open loginpage$/) do
-  	visit 'http://localhost:8080/310_Project2/login.jsp'
+  	visit 'http://localhost:8081/310_Project2/login.jsp'
 end
 
 When(/^I click on "([^"]*)"$/) do |arg1|

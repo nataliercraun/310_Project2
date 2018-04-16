@@ -88,7 +88,10 @@ Scenario: If the user clicks the logout button, they are directed back to the lo
 	Then I see the current page is "/310_Project2/login.jsp"
 
 
-
+Scenario: If the user clicks the Collage Options button, an options menu appears
+	When I open mainpage
+	And I click "#collageOptionsBtn"
+	Then I see "block" on attribute "display" on class "optionsMenu"
 
 
 

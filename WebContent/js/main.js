@@ -55,6 +55,9 @@ document.querySelector("#logOutBtn").onclick = function() {
 document.querySelector("#buildCollageBtn").onclick = function() {
 	if ((document.querySelector("#shapeBox").value != '') && (document.querySelector("#topicBox").value != '')) {
 		console.log("build collage button pressed");
+		//show animated busy symbol at this point
+		//document.getElementById("#animSymb").style = "visibility:none";
+		//document.getElementById("#collageImage").innerHTML = document.getElementById("#animSymb").innerHTML;
 		/* This is where we need to send data to the servlet and generate the letter shaped collage */
 		var topicString = document.querySelector("#topicBox").value;
 		var shapeString = document.querySelector("#shapeBox").value;
@@ -67,8 +70,12 @@ document.querySelector("#buildCollageBtn").onclick = function() {
 		xhttp.open("GET", "http://localhost:8080/310_Project2"+"/CollageBuilderServlet?topic="+topicString+"&shape="+shapeString+"&borders="+bordersOption+"&rotate="+rotateOption+"&width="+width+"&height="+height, true);
 		xhttp.send();
 		
+		//use this for animated busy symbol - state to indicate ready
 		xhttp.onreadystatechange = function() {
 			if (xhttp.responseText.length > 0){
+				//hide animated busy symbol now
+				//document.getElementById("#animSymb").hide();
+				
 				document.querySelector("#collageImage").src = xhttp.responseText;
 			}
 		};

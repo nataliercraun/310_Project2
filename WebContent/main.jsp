@@ -54,6 +54,7 @@
 					<button id="heightSubmit" type="submit"> Update </button>
 				</div>
 			</div>
+			<div id="wrapper">
 			<div id="maxSizeCollageContainer">
 				<div id="collageContainer" class="row">
 					<div id="collageDisplay" class="item">
@@ -61,6 +62,8 @@
 ">
 					</div>
 				</div>
+			</div>
+			<div class = "loader" id="animSymb" ></div>
 			</div>
 			<div id="saveBtns">
 				<button class="save" id="saveToHistoryBtn"> Save to History  </button>
