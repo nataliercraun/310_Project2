@@ -4,17 +4,18 @@
 	<head>
 		<!-- Google font --> 
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/main.css" type="text/css">
 		<title> Main Web Page </title>
 	</head>
 	<body>
 	<div id= "topContainer">
 		<h1 id="header">
-			Collage Display 
 		</h1>
 	</div>
 	<br><br><br><br>
-		<button id="logOutBtn"> Log Out </button>
+		<button id="logOutBtn" class="btn btn-secondary"> Log Out </button>
 		<div id="container">
 			<div id="leftContainer">
 				<div class="horizRow">
@@ -25,56 +26,52 @@
 					<label for="topicBox"> Shape </label>
 					<input id="shapeBox" type="text"> 
 				</div>
-				<button id="buildCollageBtn" type="submit"> Build Collage </button>
-				<button id="collageOptionsBtn"> Collage Options </button>
+				<button id="buildCollageBtn" type="submit" class="btn btn-info"> Build Collage </button>
+				<button id="collageOptionsBtn" class="btn btn-info"> Collage Options </button>
 				<div id = "optionsMenu" class="optionsMenu">
-				<h2> Collage Options  </h2>
-				<div class="horizRow">
-					<label for="dropdownContainer"> Filter Type </label>
-					<div id="dropdownContainer">
-					<select id="filterValue" onchange="filter()">
-					  <option value="none"> Normal </option>
-					  <option value="grayscale(100%)">Black & White </option>
-					  <option value="sepia(100%)">Sepia</option>
-					</select>
+					<div class="horizRow">
+						<label for="dropdownContainer"> Filter </label>
+						<div id="dropdownContainer">
+						<select id="filterValue" onchange="filter()">
+						  <option value="none"> Normal </option>
+						  <option value="grayscale(100%)">Black & White </option>
+						  <option value="sepia(100%)">Sepia</option>
+						  <option value="grayscale(50%)">Grayscale</option>
+						</select>
+						</div>
+					</div>
+					
+					<div class="horizRow">
+						<label for="borderBox"> Borders </label>
+						<input id="borderBox" type="checkbox"> 
+					</div>
+					<div class="horizRow">
+						<label for="rotateBox"> Rotation </label>
+						<input id="rotateBox" type="checkbox">
+					</div>
+					<div class="horizRow">
+						<label for="widthBox"> Width </label>
+						<input id="widthBox" type="text" placeholder="Max 500px">
+						<button id="widthSubmit" type="submit"> Update </button>
+					</div>
+					<div class="horizRow">
+						<label for="heightBox"> Height </label>
+						<input id="heightBox" type="text" placeholder="Max 500px">
+						<button id="heightSubmit" type="submit"> Update </button>
 					</div>
 				</div>
-				
-				<div class="horizRow">
-					<label for="borderBox"> Borders </label>
-					<input id="borderBox" type="checkbox"> 
-				</div>
-				<div class="horizRow">
-					<label for="rotateBox"> Rotation </label>
-					<input id="rotateBox" type="checkbox">
-				</div>
-				<div class="horizRow">
-					<label for="widthBox"> Width </label>
-					<input id="widthBox" type="text" placeholder="Max 500px">
-					<button id="widthSubmit" type="submit"> Update </button>
-				</div>
-				<div class="horizRow">
-					<label for="heightBox"> Height </label>
-					<input id="heightBox" type="text" placeholder="Max 500px">
-					<button id="heightSubmit" type="submit"> Update </button>
-				</div>
-			</div>
 
 			</div>
 			<div id="wrapper">
-
-			<div id="maxSizeCollageContainer">
-				<div id="collageContainer" class="row">
-					<div id="collageDisplay" class="item">
-						 <img id="collageImage" src="">
-					</div>
+				<div id="filler">
+					<h1 class="fillertext" id="filler_one"> Customize </h1>
+					<h1 class="fillertext" id="filler_two"> Your </h1>
+					<h1 class="fillertext" id="filler_three"> Collage </h1>
 				</div>
 			</div>
-			<div class = "loader" id="animSymb" ></div>
-			</div>
 			<div id="saveBtns">
-				<button class="save" id="saveToHistoryBtn"> Save to History  </button>
-				<button class="save" id="exportBtn"> Export </button>
+				<button id="saveToHistoryBtn" class="save btn btn-primary"> Save to History  </button>
+				<button id="exportBtn" class="save btn btn-primary"> Export </button>
 			</div>
 		</div>
 		<!-- Include Firebase -->

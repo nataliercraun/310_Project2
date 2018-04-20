@@ -1,12 +1,9 @@
 @charset "ISO-8859-1";
 
-
-
 body {
-  font-family: Arial;
- 
-  background-size: 165% 145%;
-  background-repeat: no-repeat;
+	font-family: Arial;
+	background-size: 165% 145%;
+	background-repeat: no-repeat;
 }
 
 #newUserClick {
@@ -20,10 +17,12 @@ body {
     color: white;
     text-shadow: 3px 2px rgba(52, 128, 193, 1);
     margin-top: 40px;
-    font-size: 35px;
+    font-size: 60px;
 	
 }
 #outercontainer {
+  display: flex; 
+  flex-direction: column; 
   margin-top: 40px;
   padding-top: 5px;
   padding-bottom: 10px;
@@ -37,34 +36,45 @@ body {
 	color: #DDB318;
 }
 
+#outercontainer .form-row1 {
+	margin-top: 10px; 
+	margin-bottom: 10px; 
+}
+
+#outercontainer .form-row {
+	justify-content: center; 
+	margin-bottom: 10px;
+}
+
 #newusercontainer {
-  margin-top: 40px;
-  padding-top: 5px;
-  padding-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: rgba(52, 128, 193, 0.7);
-  width: 600px;
-  color: white;
-  display: none;
+	margin-top: 40px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: rgba(52, 128, 193, 0.7);
+	width: 600px;
+	color: white;
+	display: none;
 }
 #newusercontainer a {
 	color: #DDB318;
 }
 
 #errorcontainer {
-  margin-top: 10px;
-  padding-top: 5px;
-  padding-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: rgba(255, 0, 0, 0.7);
-  width: 600px;
-  color: white;
-  display: none;
+	margin-top: 10px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: rgba(255, 0, 0, 0.7);
+	width: 600px;
+	color: white;
+	display: none;
 }
 h3, h4 {
   text-align: center;
+  font-size: 18px;
 }
 .form-row {
   margin-bottom: 10px;
