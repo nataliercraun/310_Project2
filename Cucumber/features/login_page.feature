@@ -27,7 +27,7 @@ Scenario: If the correct username and password are provided, the main page appea
 	And I click "#logOutBtn"
 	And I sleep for time "3"
 
-Scenario: If the incorrect username and password are provided, an error appears 
+Scenario: If the incorrect username and password are provided, an alert message appears 
 
 	When I open loginpage
 	And I type "wrong@usc.edu" into "#emailinput"
@@ -56,7 +56,7 @@ Scenario: If the user enters neither a password nor email, they are asked to pro
 	And I click on "#acct_button"
 	Then I see an alert that says "Please enter an email and password"
 
-Scenario: If the user tries to create a password with less than 6 characters, an error appears 
+Scenario: If the user tries to create a password with less than 6 characters, an alert message appears 
 
 	When I open loginpage
 	And I click on "#newUserClick"
@@ -67,7 +67,7 @@ Scenario: If the user tries to create a password with less than 6 characters, an
 	And I sleep for time "3"
 	Then I see an alert that says "auth/weak-password Password should be at least 6 characters"
 
-Scenario: If the user tries to register with a non-email, an error appears 
+Scenario: If the user tries to register with a non-email, an alert message appears 
 
 	When I open loginpage
 	And I click on "#newUserClick"
@@ -88,6 +88,17 @@ Scenario: If the user enters two different passwords during registration, an ale
 	And I click "#register_button"
 	And I sleep for time "3"
 	Then I see an alert that says "Passwords do not match!"
+
+Scenario: If the user enters an email that's already in use, an alert message appears 
+
+	When I open loginpage
+	And I click on "#newUserClick"
+	And I type "craun@usc.edu" into "#newemail" 
+	And I type "123valid" into "#newpw"
+	And I type "123valid" into "#confirmpw"	
+	And I click "#register_button"
+	And I sleep for time "3"
+	Then I see an alert that says "auth/email-already-in-use The email address is already in use by another account."
 
 
 
