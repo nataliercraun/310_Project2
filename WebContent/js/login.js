@@ -19,13 +19,22 @@ document.getElementById("acct_button").onclick = function() {
 		  
 	var email = document.querySelector("#emailinput").value; 
 	var password = document.querySelector("#passinput").value;
-		  
-//	firebase.database().ref('users').set({
-//		username: name,
-//		password: pass,
-//	});
+	
+	if (email == "" && password == "") {
+		
+		alert("Please enter an email and password")
+		return; 
+	} else if (email == "") {
+		alert("Please enter an email")
+		return; 
+	} else if (password == "") {
+		alert("Please enter a password")
+		return; 
+	}
 	
 	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+		
+		alert("Incorrect username or password")
 		// Handle Errors here.
 		var errorCode = error.code;
 		var errorMessage = error.message;
@@ -36,8 +45,8 @@ document.getElementById("acct_button").onclick = function() {
 }
 
 document.getElementById("register_button").onclick = function() {
-	console.log("register button clicked"); 
-		  
+	
+	console.log("register button clicked"); 	  
 	var email = document.querySelector("#newemail").value; 
 	var password = document.querySelector("#newpw").value;
 	var confirmPassword = document.querySelector("#confirmpw").value;
@@ -88,4 +97,25 @@ function toggleShowError() {
 	else {
 		errorContainer.style.display = "none";
 	}
+}
+
+/* Allows submit buttons to be triggered when the user presses 'enter' */
+document.getElementById("emailinput").addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("acct_button").click();
+    }
+});
+
+document.getElementById("passinput")
+	.addEventListener("keyup", function(event) {
+	event.preventDefault();
+	if (event.keyCode === 13) {
+	    document.getElementById("acct_button").click();
+	}
+});
+
+/* Back button to return to login from registration */
+document.getElementById("back_button").onclick = function() {
+	window.location.href = "login.jsp";
 }
