@@ -26,7 +26,7 @@ document.querySelector("#widthSubmit").onclick = function() {
 	if (document.querySelector("#widthBox").value > 500) {
 		alert("Value greater than 500px")
 	} else {
-		document.querySelector("#collageDisplay").style.width = document.querySelector("#widthBox").value + 'px'; 
+		document.querySelector("#collageImage").style.width = document.querySelector("#widthBox").value + 'px'; 
 	}
 }
 
@@ -35,7 +35,7 @@ document.querySelector("#heightSubmit").onclick = function() {
 	if (document.querySelector("#heightBox").value > 500) {
 		alert("Value greater than 500px"); 
 	} else {
-		document.querySelector("#collageDisplay").style.height = document.querySelector("#heightBox").value + 'px'; 
+		document.querySelector("#collageImage").style.height = document.querySelector("#heightBox").value + 'px'; 
 	}
 }
 
@@ -97,13 +97,13 @@ document.querySelector("#buildCollageBtn").onclick = function() {
 				if (document.querySelector("#widthBox").value > 500) {
 					alert("Value greater than 500px")
 				} else {
-					document.querySelector("#collageDisplay").style.width = document.querySelector("#widthBox").value + 'px'; 
+					document.querySelector("#collageImage").style.width = document.querySelector("#widthBox").value + 'px'; 
 				}
 				
 				if (document.querySelector("#heightBox").value > 500) {
 					alert("Value greater than 500px"); 
 				} else {
-					document.querySelector("#collageDisplay").style.height = document.querySelector("#heightBox").value + 'px'; 
+					document.querySelector("#collageImage").style.height = document.querySelector("#heightBox").value + 'px'; 
 				}
 			
 				document.querySelector("#collageImage").style.filter = document.getElementById("filterValue").value; 
