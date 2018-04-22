@@ -88,10 +88,46 @@ Scenario: If the user clicks the logout button, they are directed back to the lo
 	Then I see the current page is "/310_Project2/login.jsp"
 
 
+Scenario: If the user clicks the Collage Options button, an options menu appears
+	When I open mainpage
+	And I click "#collageOptionsBtn"
+	Then I see "block" on attribute "display" on class "optionsMenu"
 
 
+Scenario: If the user clicks the logout button, and tries to access main.jsp with no user logged in, they are directed back to the login page  
+	When I open mainpage
+	And I click "#logOutBtn"
+	And I sleep for time "3"
+	Then I see an alert that says "You were logged out."
+	And I close the alert 
+	Then I see the current page is "/310_Project2/login.jsp"
+	When I open mainpage
+	Then I see an alert that says "You were logged out."
+	And I close the alert 
+	Then I see the current page is "/310_Project2/login.jsp"
 
 
+Scenario: If no collage is shown, user should not be able to click "#saveToHistoryBtn"
+	When I open mainpage
+	Then I see no collage displayed
+	And the "#saveToHistoryBtn" should be disabled
+
+
+Scenario: If collage is shown and user clicks "#saveToHistoryBtn", the collage should be shown in collage history gallery
+	When I open mainpage
+	And I type "banana" into "#topicBox"
+	And I type "o" into "#shapeBox"
+	And I click "#buildCollageBtn"
+	Then I see a collage displayed
+	When I click "#saveToHistoryBtn"
+	Then I should see the collage saved in the collage history gallery
 	
+Scenario: If delete button is pressed on a collage, that collage should be removed from the collage history gallery
+	
+	
+	
+
+
+
 
 	
