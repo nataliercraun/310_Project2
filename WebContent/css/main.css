@@ -143,7 +143,6 @@ input, label {
 	visibility: hidden; 
 }
 
-
 #saveBtns {
 	
 	visibility: hidden; 
@@ -261,8 +260,43 @@ input, label {
 	animation: fadein 3s linear forwards;
 }
 
+#wrapper {
+	position: relative;
+}
 
+#collageHistoryGalleryContainer {
+	height: 120px;
+	padding-top: 20px;
+	text-align: center;
+	overflow: auto;
+	white-space: nowrap;		
+}
 
+#collageHistoryGalleryContainer .collageHistoryImageContainer {
+	height: 100px;
+	width: 100px;
+	display: inline;
+	padding-right: 10px;
+	padding-left: 10px;
+}
 
+#collageHistoryGalleryContainer .collageHistoryImageContainer .collageHistoryImage {
+	height: 98px;
+	z-index: 0;
+}
 
+.collageDeleteButton {
+	position: relative;
+	z-index: 1;
+	color: #494949;
+	opacity: 0.5;
+	right: 15px;
+	bottom: 83px;
+	cursor: pointer;
+	width: 0px;
+	font-size: 12pt;
+}
 
+.collageHistoryImageContainer:hover .collageDeleteButton {
+	opacity: 1.0;	
+}

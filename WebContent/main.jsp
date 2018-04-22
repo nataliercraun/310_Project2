@@ -4,12 +4,13 @@
 	<head>
 		<!-- Google font --> 
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/main.css" type="text/css">
 		<title> Main Web Page </title>
 	</head>
-	<body>
+	<body onload="updateGalleryArray();">
 	<div id= "topContainer">
 		<h1 id="header">
 		</h1>
@@ -69,11 +70,17 @@
 					<h1 class="fillertext" id="filler_three"> Collage </h1>
 				</div>
 			</div>
+			<div class = "loader" id="animSymb" ></div>
+			</div>
 			<div id="saveBtns">
 				<button id="saveToHistoryBtn" class="save btn btn-primary"> Save to History  </button>
 				<button id="exportBtn" class="save btn btn-primary"> Export </button>
 			</div>
 		</div>
+		<!-- Container for Collage History Gallery -->
+		<div id="collageHistoryGalleryContainer">
+		</div>
+		
 		<!-- Include Firebase -->
 		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
 		<!-- Initialize Firebase --> 

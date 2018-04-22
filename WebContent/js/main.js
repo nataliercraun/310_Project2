@@ -6,14 +6,14 @@
 var storage = firebase.storage();
 // Create a storage reference from our storage service
 var storageRef = storage.ref();
-//Create a database reference from our database service
-var databaseRef = firebase.database().ref();
 // Array of saved urls for gallery display
 var galleryImageUrls = [];
+// Array of database keys for saved images
+var galleryImageDatabaseKeys = [];
 
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-		
+		// Don't do anything if user is signed in
 	} else {
 		// No user is signed in.
 		window.location.href = "login.jsp";
@@ -52,22 +52,19 @@ document.querySelector("#logOutBtn").onclick = function() {
 }
 
 /* Function to display options */
-
 document.querySelector("#collageOptionsBtn").onclick = function() {
-		var options = document.getElementById("optionsMenu");
-		var button = document.getElementById("collageOptionsBtn");
-		//classToChange.classList.toggle("optionsMenuShown");
-		if (button.innerHTML == " Collage Options "){
-			console.log("test");
-			options.setAttribute('class', 'optionsMenuShown');
-			button.innerHTML = " Hide ";
-		}
-		else {
-			options.setAttribute('class', 'optionsMenu');
-			button.innerHTML = " Collage Options ";
-		}
-		
-	
+	var options = document.getElementById("optionsMenu");
+	var button = document.getElementById("collageOptionsBtn");
+	//classToChange.classList.toggle("optionsMenuShown");
+	if (button.innerHTML == " Collage Options "){
+		console.log("test");
+		options.setAttribute('class', 'optionsMenuShown');
+		button.innerHTML = " Hide ";
+	}
+	else {
+		options.setAttribute('class', 'optionsMenu');
+		button.innerHTML = " Collage Options ";
+	}
 }
 
 /* Function to populate collage display */
@@ -75,7 +72,6 @@ document.querySelector("#buildCollageBtn").onclick = function() {
 	if ((document.querySelector("#shapeBox").value != '') && (document.querySelector("#topicBox").value != '')) {
 		console.log("build collage button pressed");
 		document.querySelector("#wrapper").innerHTML = "<div class='loader'></div>"; 
-		
 		/* This is where we need to send data to the servlet and generate the letter shaped collage */
 		var topicString = document.querySelector("#topicBox").value;
 		var shapeString = document.querySelector("#shapeBox").value;
@@ -91,7 +87,6 @@ document.querySelector("#buildCollageBtn").onclick = function() {
 		//use this for animated busy symbol - state to indicate ready
 		xhttp.onreadystatechange = function() {
 			if (xhttp.responseText.length > 0){
-								
 				document.querySelector("#wrapper").innerHTML = "<div id='maxSizeCollageContainer'> <div id='collageContainer' class='row'> <div id='collageDisplay' class='item'> <img id='collageImage' src=''></div></div></div></div>"; 
 				document.querySelector("#collageImage").src = xhttp.responseText;
 				if (document.querySelector("#widthBox").value > 500) {
@@ -131,16 +126,13 @@ document.querySelector("#saveToHistoryBtn").onclick = function() {
 		var metadata = {	 contentType: 'image/png' };
 		/* Variable for upload task to track status of upload */
 		collageRef.putString(image, 'data_url', metadata).then(function(snapshot){
-			console.log("url success, attempting to push to DB");
-			
-			firebase.database().ref('savedCollages').push().set({
+			var newPostKey = firebase.database().ref('savedCollages').push().key;
+			firebase.database().ref('savedCollages/' + newPostKey).set({
 				email: firebase.auth().currentUser.email,
 				collageURL: snapshot.downloadURL,
+				key: newPostKey
 			});
-			console.log("DB push success!");
-			
 			updateGalleryArray();
-			
 		}).catch(function(error) {
 			console.log("No URL");
 			console.log(error);
@@ -148,23 +140,67 @@ document.querySelector("#saveToHistoryBtn").onclick = function() {
 	}
 }
 
-/* Function to update history gallery */
+/* Function to update history gallery array */
 function updateGalleryArray() {
-	/* Clear the gallery images so we don't double push */
+	/* Clear the gallery images so we don't double push */	
 	galleryImageUrls = [];
-	firebase.database().ref('savedCollages').once("value").then(function(snapshot) {
+	galleryImageDatabaseKeys = [];
+	firebase.database().ref().child('savedCollages').once("value").then(function(snapshot) {
 		for (var key in snapshot.val()) {
 			/* If the email of image matches current user, push to gallery array */
 			if (snapshot.val()[key].email === firebase.auth().currentUser.email){
+				var dbKey = snapshot.val()[key].key;
+				galleryImageDatabaseKeys.push(dbKey);
 				var url = snapshot.val()[key].collageURL;
 				galleryImageUrls.push(url);
 			}
 		}
-		for (var urlIndex in galleryImageUrls) {
-			console.log("url: " + galleryImageUrls[urlIndex]);
+		for (var keyIndex in galleryImageDatabaseKeys) {
+			console.log("dbKey: " + galleryImageDatabaseKeys[keyIndex]);
 		}
-		/* Update the gallery history here */
+		updateGallery();
 	});
+}
+
+/* Function to switch collage clicked with main display, attached to each obj in gallery */
+function swapCollage() {
+	document.querySelector("#collageImage").src = this.src;
+}
+
+/* Function to delete a collage from saved history */
+function deleteCollageFromHistory() {
+	firebase.database().ref().child("savedCollages").child(this.getAttribute("data-key")).remove();
+	var deleteRef = firebase.storage().refFromURL(this.getAttribute("data-imageURL"));
+	deleteRef.delete();
+	updateGalleryArray();
+}
+
+/* Function to update history gallery array */
+function updateGallery() {
+	var collageHistoryGalleryContainer = document.getElementById("collageHistoryGalleryContainer");
+	while (collageHistoryGalleryContainer.firstChild) {
+		collageHistoryGalleryContainer.removeChild(collageHistoryGalleryContainer.firstChild);
+	}
+	for (var index = 0; index < galleryImageDatabaseKeys.length; index++) {
+		var collageImageContainer = document.createElement("div");
+		collageImageContainer.setAttribute("class", "collageHistoryImageContainer");
+		
+		var collageImageElement = document.createElement("IMG");
+		collageImageElement.setAttribute("src", galleryImageUrls[index]);
+		collageImageElement.setAttribute("class", "collageHistoryImage");
+		collageImageElement.onclick = swapCollage;
+		
+		var collageDeleteFromHistoryButton = document.createElement("i");
+		collageDeleteFromHistoryButton.setAttribute("class", "material-icons collageDeleteButton");
+		collageDeleteFromHistoryButton.setAttribute("data-key", galleryImageDatabaseKeys[index]);
+		collageDeleteFromHistoryButton.setAttribute("data-imageURL", galleryImageUrls[index]);
+		collageDeleteFromHistoryButton.appendChild(document.createTextNode("clear"));
+		collageDeleteFromHistoryButton.onclick = deleteCollageFromHistory;
+		
+		collageImageContainer.appendChild(collageImageElement);
+		collageImageContainer.appendChild(collageDeleteFromHistoryButton);
+		collageHistoryGalleryContainer.appendChild(collageImageContainer);
+	}
 }
 
 /* Allows submit buttons to be triggered when the user presses 'enter' */

@@ -29,3 +29,10 @@ Then(/^I close the alert$/) do
 	alert.send('accept')
 end
 
+Then (/^I see no collage displayed$/) do
+    find("#collageImage").should be_disabled
+end
+
+Then (/^the "([^"]*)" should be disabled$/) do |arg1|
+    find(arg1).should be_disabled
+end
