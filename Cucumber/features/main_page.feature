@@ -106,6 +106,16 @@ Scenario: If the user clicks the logout button, and tries to access main.jsp wit
 	And I close the alert 
 	Then I see the current page is "/310_Project2/login.jsp"
 
+	When I open mainpage
+	And I click "#logOutBtn"
+	And I sleep for time "3"
+	Then I see an alert that says "You were logged out."
+	And I close the alert 
+	Then I see the current page is "/310_Project2/login.jsp"
+	And I open mainpage
+	Then I see an alert that says "You were logged out."
+	And I close the alert 
+	Then I see the current page is "/310_Project2/login.jsp"
 
 Scenario: If no collage is shown, user should not be able to click "#saveToHistoryBtn"
 	When I open mainpage

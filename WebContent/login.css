@@ -32,7 +32,6 @@ body {
   width: 600px;
   color: white;
 }
-
 #outercontainer a {
 	color: #DDB318;
 }
@@ -60,10 +59,6 @@ body {
 }
 #newusercontainer a {
 	color: #DDB318;
-}
-
-#topRow {
-	margin-top: 15px; 
 }
 
 #errorcontainer {

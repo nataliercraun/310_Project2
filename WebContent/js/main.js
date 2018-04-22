@@ -26,7 +26,7 @@ document.querySelector("#widthSubmit").onclick = function() {
 	if (document.querySelector("#widthBox").value > 500) {
 		alert("Value greater than 500px")
 	} else {
-		document.querySelector("#collageDisplay").style.width = document.querySelector("#widthBox").value + 'px'; 
+		document.querySelector("#collageImage").style.width = document.querySelector("#widthBox").value + 'px'; 
 	}
 }
 
@@ -35,7 +35,7 @@ document.querySelector("#heightSubmit").onclick = function() {
 	if (document.querySelector("#heightBox").value > 500) {
 		alert("Value greater than 500px"); 
 	} else {
-		document.querySelector("#collageDisplay").style.height = document.querySelector("#heightBox").value + 'px'; 
+		document.querySelector("#collageImage").style.height = document.querySelector("#heightBox").value + 'px'; 
 	}
 }
 
@@ -71,9 +71,7 @@ document.querySelector("#collageOptionsBtn").onclick = function() {
 document.querySelector("#buildCollageBtn").onclick = function() {
 	if ((document.querySelector("#shapeBox").value != '') && (document.querySelector("#topicBox").value != '')) {
 		console.log("build collage button pressed");
-		//show animated busy symbol at this point
-		//document.getElementById("#animSymb").style = "visibility:none";
-		//document.getElementById("#collageImage").innerHTML = document.getElementById("#animSymb").innerHTML;
+		document.querySelector("#wrapper").innerHTML = "<div class='loader'></div>"; 
 		/* This is where we need to send data to the servlet and generate the letter shaped collage */
 		var topicString = document.querySelector("#topicBox").value;
 		var shapeString = document.querySelector("#shapeBox").value;
@@ -89,9 +87,24 @@ document.querySelector("#buildCollageBtn").onclick = function() {
 		//use this for animated busy symbol - state to indicate ready
 		xhttp.onreadystatechange = function() {
 			if (xhttp.responseText.length > 0){
-				//hide animated busy symbol now
-				//document.getElementById("#animSymb").hide();
+				document.querySelector("#wrapper").innerHTML = "<div id='maxSizeCollageContainer'> <div id='collageContainer' class='row'> <div id='collageDisplay' class='item'> <img id='collageImage' src=''></div></div></div></div>"; 
 				document.querySelector("#collageImage").src = xhttp.responseText;
+				if (document.querySelector("#widthBox").value > 500) {
+					alert("Value greater than 500px")
+				} else {
+					document.querySelector("#collageImage").style.width = document.querySelector("#widthBox").value + 'px'; 
+				}
+				
+				if (document.querySelector("#heightBox").value > 500) {
+					alert("Value greater than 500px"); 
+				} else {
+					document.querySelector("#collageImage").style.height = document.querySelector("#heightBox").value + 'px'; 
+				}
+			
+				document.querySelector("#collageImage").style.filter = document.getElementById("filterValue").value; 
+				document.querySelector("#saveBtns").style.visibility = "visible";
+				document.querySelector("#widthSubmit").style.visibility = "visible";
+				document.querySelector("#heightSubmit").style.visibility = "visible";
 			}
 		};
 	} else {

@@ -6,7 +6,7 @@ html, body {
 	-webkit-animation: fadein 2s linear forwards;
     animation: fadein 2s linear forwards;
     color: white;
-    text-shadow: 3px 2px rgba(52, 128, 193, 1);
+    text-shadow: 3px 2px #5bc0de;
     font-size: 50px;
 	/* Flex stuff */ 
 	display: flex;
@@ -16,13 +16,10 @@ html, body {
 
 #logOutBtn {
 	cursor: pointer;
-	background-color: red;
-	color: white;
-	border: 1px white;
 	width: 80px;
 	height: 40px;
 	margin-top: 20px;
-	
+	margin-left: 20px; 
 }
 
 #container {
@@ -35,7 +32,7 @@ html, body {
 #maxSizeCollageContainer {
 	height: 500px; 
 	width: 500px; 
-
+	
 	/* Flex stuff */ 
 	display: flex;
 	justify-content: center;  
@@ -82,21 +79,26 @@ html, body {
 	width: 420px;
 	/* Flex stuff */ 
 	display: block;
-	flex-direction: column;
-	/*justify-content: space-around; */
 }
 
 
 #collageOptionsBtn {
 	cursor: pointer;
-	background-color: blue;
-	color: white;
-	border: 1px white;
 	width: 60%;
 	height: 10% 
 	box-sizing: border-box;
 	margin-left: 25%; 
 	margin-top: 20px; 
+	margin-bottom: 20px; 
+}
+
+#buildCollageBtn {
+	cursor: pointer;
+	width: 60%;
+	height: 30%; 
+	box-sizing: border-box;
+	margin-left: 25%; 
+	margin-top: 10px; 
 }
 
 .optionsMenu{
@@ -124,7 +126,7 @@ label {
     width:80px;
     clear:left;
     text-align:left;
-    padding-right:5px;
+    padding-right: 20px;
 }
 
 input, label {
@@ -133,26 +135,17 @@ input, label {
 
 #widthSubmit {
 	margin-left: 5px; 
+	visibility: hidden; 
 }
 
 #heightSubmit {
 	margin-left: 5px; 
+	visibility: hidden; 
 }
-
-#buildCollageBtn {
-	cursor: pointer;
-	background-color: green;
-	color: white;
-	border: 1px white;
-	width: 60%;
-	height: 30%; 
-	box-sizing: border-box;
-	margin-left: 25%; 
-	margin-top: 10px; 
-}
-
 
 #saveBtns {
+	
+	visibility: hidden; 
 
 	margin-left: 20px; 
 	/* Flex stuff */ 
@@ -179,23 +172,16 @@ input, label {
 
 #saveToHistoryBtn {
 	cursor: pointer;
-	background-color: #F4D03F;
-	color: white;
-	border: 1px white;
 	width: 100%;
 	height: 30%; 
 	box-sizing: border-box;
 	margin-left: 25%; 
 	margin-top: 10px;
-	justify-content: center;
-	
+	justify-content: center;	
 }
 
 #exportBtn {
 	cursor: pointer;
-	background-color: #900C3F;
-	color: white;
-	border: 1px white;
 	width: 100%;
 	height: 30%; 
 	box-sizing: border-box;
@@ -227,10 +213,56 @@ input, label {
     to   { opacity: 1; }
 }
 
+.loader {
+	border: 16px solid #f3f3f3;
+	border-top: 16px solid #3498db;
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
+	position: absolute;
+	z-index: 1;
+	left: 200px;
+	bottom: 200px;
+	visibility: none;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg);}
+	100% { transform: rotate(360deg);}
+}
+
 #wrapper {
 	position: relative;
 }
 
+#filler {  
+   	color: #17a2b8; 
+}
+
+.fillertext {
+	 font-size: 100px;
+}
+
+#filler_one {
+	-webkit-animation: fadein 2s linear forwards;
+	animation: fadein 1s linear forwards;
+}
+
+#filler_two {
+	color: black; 
+	-webkit-animation: fadein 2s linear forwards;
+	animation: fadein 2s linear forwards;
+}
+
+#filler_three{
+	-webkit-animation: fadein 2s linear forwards;
+	animation: fadein 3s linear forwards;
+}
+
+#wrapper {
+	position: relative;
+}
 
 #collageHistoryGalleryContainer {
 	height: 120px;
