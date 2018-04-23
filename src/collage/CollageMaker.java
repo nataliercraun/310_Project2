@@ -30,7 +30,7 @@ public class CollageMaker {
 	    g.dispose();
 	    return b;
 	}
-	public BufferedImage makeCollage(BufferedImage shape, Shape ol, Vector<BufferedImage> sourceImages) throws IOException {
+	public BufferedImage makeCollage(BufferedImage shape, Vector<BufferedImage> sourceImages) throws IOException {
 		//Set scalars
 		BufferedImage copy = CollageMaker.copyImage(shape);
 		tileWidth = shape.getWidth()/tileSize;
