@@ -70,8 +70,6 @@
 					<h1 class="fillertext" id="filler_three"> Collage </h1>
 				</div>
 			</div>
-			<div class = "loader" id="animSymb" ></div>
-			</div>
 			<div id="saveBtns">
 				<button id="saveToHistoryBtn" class="save btn btn-primary"> Save to History  </button>
 				<button id="exportBtn" class="save btn btn-primary"> Export </button>
