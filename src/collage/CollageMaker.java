@@ -7,8 +7,10 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.Stroke;
+import java.awt.color.ColorSpace;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorConvertOp;
 import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
@@ -18,13 +20,6 @@ import javax.imageio.ImageIO;
 
 public class CollageMaker {
 	
-	int tileWidth, tileHeight;
-	final int tileSize = 15;
-	boolean rotation;
-	public CollageMaker()
-	{
-		rotation = true; 
-	}
 	public static BufferedImage copyImage(BufferedImage source){
 	    BufferedImage b = new BufferedImage(source.getWidth(), source.getHeight(), source.getType());
 	    Graphics g = b.getGraphics();
@@ -32,7 +27,44 @@ public class CollageMaker {
 	    g.dispose();
 	    return b;
 	}
+	
+	public static BufferedImage toGrayScale(BufferedImage master) {
+        BufferedImage gray = new BufferedImage(master.getWidth(), master.getHeight(), BufferedImage.TYPE_INT_ARGB);
+
+        // Automatic converstion....
+        ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+        op.filter(master, gray);
+
+        return gray;
+    }
+	public static BufferedImage toBlackAndWhite(BufferedImage master) {
+        BufferedImage bw = new BufferedImage(master.getWidth(), master.getHeight(),
+                BufferedImage.TYPE_BYTE_BINARY);
+
+        Graphics2D g = bw.createGraphics();
+        g.drawImage(master, 0, 0, null);
+        return bw;
+    }
+	
+	int tileWidth, tileHeight;
+	final int tileSize = 15;
+	boolean rotation;
+	public CollageMaker()
+	{
+		rotation = true; 
+	}
+	
+	
+	
 	public BufferedImage makeCollage(BufferedImage shape, Vector<BufferedImage> sourceImages, boolean rotation, boolean borders, int filter) throws IOException {
+		/*filters:
+		 * 0: none
+		 * 1: grayscale
+		 * 2: B&@
+		 * 3: Sepia
+		 * 
+		*/
+		
 		//Set scalars
 		BufferedImage copy = CollageMaker.copyImage(shape);
 		tileWidth = shape.getWidth()/tileSize;
@@ -82,8 +114,16 @@ public class CollageMaker {
 					shape.setRGB(x, y, white);
 			}
 		}
-		
-		return shape;
+		if(filter == 0)
+			return shape;
+		else if(filter == 1)
+			return CollageMaker.toGrayScale(shape);
+		else if(filter == 2)
+			return CollageMaker.toBlackAndWhite(shape);
+		else if(filter == 3)
+			return shape; // todo
+		else
+			return shape;
 	}
 	private BufferedImage scaleImage(BufferedImage orig) {
 		// Each image scaled to tileWidth x tileHeight
