@@ -34,7 +34,7 @@ public class CollageShaper {
 		//create font and transform
 		FontRenderContext frc = g2.getFontRenderContext();
 		AffineTransform atf = new AffineTransform();
-		Font f = new Font("Helvetica", 1, width/userInput.length() );
+		Font f = new Font("Helvetica", 1, 210 );
 		
 		//retrieve user's string and create textlayout
 		String s = new String(userInput);
@@ -42,9 +42,9 @@ public class CollageShaper {
 		
 		//create outline of letters and a bounding rectangle
 		Shape outline = tl.getOutline(null);
-		ol = outline;
 		Rectangle r = outline.getBounds();
-		
+		ol = outline;
+
 		//center it
 		atf = g2.getTransform();
 		atf.translate(width/2-(r.width/2), height/2+(r.height/2));
