@@ -37,6 +37,7 @@ public class CollageMaker {
 
         return gray;
     }
+	
 	public static BufferedImage toBlackAndWhite(BufferedImage master) {
         BufferedImage bw = new BufferedImage(master.getWidth(), master.getHeight(),
                 BufferedImage.TYPE_BYTE_BINARY);
@@ -44,6 +45,61 @@ public class CollageMaker {
         Graphics2D g = bw.createGraphics();
         g.drawImage(master, 0, 0, null);
         return bw;
+    }
+	
+	public static BufferedImage toSepia(BufferedImage master) {
+		//level of sepia-ness, 0 is BW
+		int sepiaDepth = 20;
+		
+        BufferedImage sepiaImage = new BufferedImage(master.getWidth(), master.getHeight(),
+                BufferedImage.TYPE_INT_ARGB);
+        for(int x = 0; x < master.getWidth(); x++)
+        {
+        	for(int y = 0; y < master.getHeight(); y++)
+        	{
+        		int rgb = master.getRGB(x, y);
+        		
+        		int R = (rgb >> 16) & 0x000000FF;
+        		int G = (rgb >>8 ) & 0x000000FF;
+        		int B = (rgb) & 0x000000FF;
+        		
+        		int tr = (int) (0.393*R + 0.769*G + 0.189*B);
+        		int tg = (int) (0.349*R + 0.686*G + 0.168*B);
+        		int tb = (int) (0.272*R + 0.534*G + 0.131*B);
+        		
+        		if(tr > 255)
+        			R = 255;
+        		else
+        			R = tr;
+        		
+        		if(tg > 255)
+        			G = 255;
+        		else
+        			G = tg;
+        		
+        		if(tb > 255)
+        			B = 255;
+    			else
+    				B = tb;
+        		
+        		//adjust and normalize
+        		R = R + sepiaDepth*2;
+        		G = G + sepiaDepth;
+        		B -= 20;
+        		
+        		if(R > 255)
+        			R = 255;
+        		if(G > 255)
+        			G = 255;
+        		if(B < 0 )
+        			B = 0;
+        		Color sepiaColor = new Color(R, G, B);
+        		sepiaImage.setRGB(x, y, sepiaColor.getRGB());
+        	}
+        }
+        //Graphics2D g = bw.createGraphics();
+        //g.drawImage(master, 0, 0, null);
+        return sepiaImage;
     }
 	
 	int tileWidth, tileHeight;
@@ -60,9 +116,8 @@ public class CollageMaker {
 		/*filters:
 		 * 0: none
 		 * 1: grayscale
-		 * 2: B&@
+		 * 2: B&W
 		 * 3: Sepia
-		 * 
 		*/
 		
 		//Set scalars
@@ -107,6 +162,9 @@ public class CollageMaker {
 		File of = new File("localImages/aaa.png");
 		ImageIO.write(copy, "png", of);
 		
+		if(filter == 3)
+			shape = toSepia(shape);
+		
 		for (int y = 0; y < copy.getHeight(); y++) {
 			for (int x = 0; x < copy.getWidth(); x++) {
 				int rgb = copy.getRGB(x, y);
@@ -114,14 +172,13 @@ public class CollageMaker {
 					shape.setRGB(x, y, white);
 			}
 		}
-		if(filter == 0)
-			return shape;
-		else if(filter == 1)
-			return CollageMaker.toGrayScale(shape);
+		
+		if(filter == 1)
+			return toGrayScale(shape);
 		else if(filter == 2)
-			return CollageMaker.toBlackAndWhite(shape);
+			return toBlackAndWhite(shape);
 		else if(filter == 3)
-			return shape; // todo
+			return shape;
 		else
 			return shape;
 	}
