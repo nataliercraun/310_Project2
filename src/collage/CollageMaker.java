@@ -1,10 +1,12 @@
 package collage;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -40,6 +42,8 @@ public class CollageMaker {
 		Vector<BufferedImage> destImages = new Vector<BufferedImage>();
 		for(BufferedImage bi : sourceImages)
 		{
+			if(borders)
+				bi = borderImage(bi);
 			destImages.add(destImages.size(), scaleImage(bi));
 		}
 		
@@ -83,12 +87,22 @@ public class CollageMaker {
 	}
 	private BufferedImage scaleImage(BufferedImage orig) {
 		// Each image scaled to tileWidth x tileHeight
-		
 		BufferedImage scaledImage = new BufferedImage(tileWidth, tileHeight, orig.getType());
 		Graphics g = scaledImage.getGraphics();
 		g.drawImage(orig, 0, 0, tileWidth, tileHeight, null);
 		g.dispose();
 		return scaledImage;
+	}
+	
+	private BufferedImage borderImage(BufferedImage orig)
+	{
+		Graphics g = orig.getGraphics();
+		Graphics2D g2d = (Graphics2D)g;
+		float thickness = 24.0f;
+		g2d.setColor(Color.white);
+		g2d.setStroke(new BasicStroke(thickness));
+		g2d.drawRect(0, 0, orig.getWidth(), orig.getHeight());
+		return orig;
 	}
 	
 }
