@@ -2,6 +2,8 @@ package testingWhiteBox;
 
 import junit.framework.TestCase;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,7 +33,12 @@ public class CollageShaperTest{
 	@Test
 	//Test case of image creation from text shape
 	public void testGetImage(){
-		assert(CSTest.getShape("Test String") != null);
+		try {
+			assert(CSTest.getShape("shor") != null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }

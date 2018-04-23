@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -25,7 +26,7 @@ public class CollageShaper {
 		width = w; height = h;
 	}
 	
-	public BufferedImage getShape (String userInput)
+	public BufferedImage getShape (String userInput) throws IOException
 	{
 		// create BufferedImage for canvas, get g2 from this canvas 
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -35,6 +36,23 @@ public class CollageShaper {
 		FontRenderContext frc = g2.getFontRenderContext();
 		AffineTransform atf = new AffineTransform();
 		Font f = new Font("Helvetica", 1, 210 );
+		FontMetrics fm = g2.getFontMetrics(f);
+		int stringWidth = fm.stringWidth(userInput);
+		
+		//dynamic sizing of font based on string length and window size
+		while(stringWidth > width)
+		{
+			f = f.deriveFont((float) (f.getSize() * 0.8));
+			fm = g2.getFontMetrics(f);
+			stringWidth = fm.stringWidth(userInput);
+		}
+		
+		while(stringWidth < width * ( 3/4 ) )
+		{
+			f = f.deriveFont(f.getSize() + 1);
+			fm = g2.getFontMetrics(f);
+			stringWidth = fm.stringWidth(userInput);
+		}
 		
 		//retrieve user's string and create textlayout
 		String s = new String(userInput);
@@ -51,7 +69,10 @@ public class CollageShaper {
 		g2.transform(atf);
 		g2.setColor(Color.GREEN);
 		tl.draw(g2, 0, 0);
-
+		
+		//testing
+		File of = new File("localImages/testShape.png");
+		ImageIO.write(image, "png", of);
 		return image;
 	}
 	
