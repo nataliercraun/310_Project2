@@ -117,7 +117,6 @@ document.getElementById("passinput")
 
 /* Back button to return to login from registration */
 document.getElementById("back_button").onclick = function() {
-	console.log("test");
 	document.getElementById("outercontainer").style.display = "block";
 	document.getElementById("newusercontainer").style.display = "none";
 }
