@@ -79,13 +79,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 	}
 });
 
-function blurFunc() {
-	var imgToBlur = document.getElementById("catTest");
-	imgToBlur.setAttribute('class', 'blur');
-}
-
 function newUserFunc() {
 	document.getElementById("outercontainer").style.display = "none";
+	document.getElementById("register").style.display = "none"; 
+	document.getElementById("newUserClick").style.display = "none"; 
 	document.getElementById("newusercontainer").style.display = "block";
 }
 

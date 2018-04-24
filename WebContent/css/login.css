@@ -1,10 +1,9 @@
 @charset "ISO-8859-1";
 
-body {
-	font-family: Arial;
-	background-size: 165% 145%;
-	background-repeat: no-repeat;
-}
+html, body {
+	font-family: 'Inconsolata', monospace;
+	min-height: 100%; 
+}	
 
 #newUserClick {
 	cursor: pointer;
@@ -14,8 +13,7 @@ body {
 	-webkit-animation: fadein 2s linear forwards;
     animation: fadein 2s linear forwards;
     text-align: center;
-    color: white;
-    text-shadow: 3px 2px rgba(52, 128, 193, 1);
+    color: #17a2b8; 
     margin-top: 40px;
     font-size: 60px;
 	
@@ -24,13 +22,15 @@ body {
   display: flex; 
   flex-direction: column; 
   margin-top: 40px;
-  padding-top: 5px;
+  padding-top: 10px;
   padding-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgba(52, 128, 193, 0.7);
+  background-color: #17a2b8; 
   width: 600px;
   color: white;
+  
+  border-radius: 25px;
 }
 
 #outercontainer a {
@@ -53,10 +53,12 @@ body {
 	padding-bottom: 10px;
 	margin-left: auto;
 	margin-right: auto;
-	background-color: rgba(52, 128, 193, 0.7);
+	background-color: #17a2b8; 
 	width: 600px;
 	color: white;
 	display: none;
+	
+	border-radius: 25px;
 }
 #newusercontainer a {
 	color: #DDB318;
@@ -66,21 +68,16 @@ body {
 	margin-top: 15px; 
 }
 
-#errorcontainer {
-	margin-top: 10px;
-	padding-top: 5px;
-	padding-bottom: 10px;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: rgba(255, 0, 0, 0.7);
-	width: 600px;
-	color: white;
-	display: none;
-}
 h3, h4 {
   text-align: center;
   font-size: 18px;
 }
+
+h4 {
+	margin-top: 10px; 
+	color: #17a2b8; 
+}
+
 .form-row {
   margin-bottom: 10px;
 }
@@ -103,6 +100,18 @@ button {
   border: 0;
   border-radius: 6px;
 }
+
+.btn {
+	opacity: .6; 
+	background-color: black; 
+	color: white; 
+}
+
+.btn:hover {
+	transition: all .2s; 
+	transform: scale(1.05); 
+}
+
 button:hover {
   background: #293F50;
   cursor: pointer;
@@ -121,50 +130,4 @@ button:hover {
 #guest a {
   text-decoration: none;
   color: white;
-}
-#formerror {
-	margin-left: auto;
-	margin-right: auto;
-	width: 70%;
-	font-size: 12px;
-	text-align: center;
-	margin-bottom: 15px;
-}
-
-
-.blur  {
-	-webkit-transition: all 1s ease;
-	-moz-webkit-transition: all 1s ease ;
-	-ms-webkit-transition: all 1s ease ;
-	-o-webkit-transition: all 1s ease ;
-	transition: all 1s ease ;
-	-webkit-filter: blur(10px);
-	float: left;
-	z-index: -1;
-	width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-}
-
-.backgroundImg {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-    
-
-}
-
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
 }
