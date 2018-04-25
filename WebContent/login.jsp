@@ -8,11 +8,11 @@
 		<link rel="stylesheet" href="css/login.css">
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
 	</head>
-	
 	<body>
 		<h1 class = "header">
-			COLLAGE BUILDER
+			Collage Builder 
 		</h1>
 		<div id="outercontainer" onclick="blurFunc()">
 			<div id="emailRow" class="form-row1">
@@ -22,10 +22,11 @@
 				<label>Password:</label> <input type="password" id="passinput" name="pw" />
 			</div>
 			<div class="form-row" style="text-align:center;">
-				<button id="acct_button" class="btn btn-warning">Login</button>
+				<button id="acct_button" class="btn">Login</button>
 			</div>
-			<h4 id="register">New user? Register <b id="newUserClick" onclick="newUserFunc()">here</b>.</h4>  
 		</div>
+		<h4 id="register">New user? Register <b id="newUserClick" onclick="newUserFunc()">here</b>.</h4>  
+		
 		
 		<div id="newusercontainer">
 			<div id="topRow" class="form-row">
@@ -38,18 +39,10 @@
 				<label>Confirm Password:</label> <input type="password" id="confirmpw" />
 			</div>
 		  	<div class="form-row-button" style="text-align:center;">
-				<button class="btn btn-warning" id="register_button">Register</button>
-				<button class="btn btn-warning" id="back_button">Go Back</button>
+				<button class="btn" id="register_button">Register</button>
+				<button class="btn" id="back_button">Go Back</button>
 		    </div>
-		</div>
-		
-		<div id="errorcontainer">
-			<h3 id = "errorMessage">ERROR: INCORRECT EMAIL OR PASSWORD</h3>
-		</div>
-		
-		<img src = "img/dog.jpg" class="backgroundImg" id="catTest"/> 
-		
+		</div>	
 		<script type="text/javascript" src="js/login.js"></script>
 	</body>
-
 </html>

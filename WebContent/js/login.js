@@ -79,13 +79,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 	}
 });
 
-function blurFunc() {
-	var imgToBlur = document.getElementById("catTest");
-	imgToBlur.setAttribute('class', 'blur');
-}
-
 function newUserFunc() {
 	document.getElementById("outercontainer").style.display = "none";
+	document.getElementById("register").style.display = "none"; 
+	document.getElementById("newUserClick").style.display = "none"; 
 	document.getElementById("newusercontainer").style.display = "block";
 }
 
@@ -117,5 +114,6 @@ document.getElementById("passinput")
 
 /* Back button to return to login from registration */
 document.getElementById("back_button").onclick = function() {
-	window.location.href = "login.jsp";
+	document.getElementById("outercontainer").style.display = "block";
+	document.getElementById("newusercontainer").style.display = "none";
 }
