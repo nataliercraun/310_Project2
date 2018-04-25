@@ -222,8 +222,8 @@ input, label {
 	animation: spin 2s linear infinite;
 	position: absolute;
 	z-index: 1;
-	left: 200px;
-	bottom: 200px;
+	right: 25px;
+	bottom: 0px;
 	visibility: none;
 }
 
