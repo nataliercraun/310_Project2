@@ -8,6 +8,7 @@
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/main.css" type="text/css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
 		<title> Main Web Page </title>
 	</head>
 	<body onload="updateGalleryArray();">
@@ -70,7 +71,8 @@
 			</div>
 			<div id="saveBtns">
 				<button id="saveToHistoryBtn" class="save btn btn-primary"> Save to History  </button>
-				<button id="exportBtn" class="save btn btn-primary"> Export </button>
+				<button id="exportBtnPng" class="save btn btn-primary"> Export as PNG</button>
+				<button id="exportBtnPdf" class="save btn btn-primary"> Export as PDF</button>
 			</div>
 		</div>
 		<!-- Container for Collage History Gallery -->

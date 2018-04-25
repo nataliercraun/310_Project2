@@ -81,7 +81,7 @@ document.querySelector("#buildCollageBtn").onclick = function() {
 		var height = document.querySelector("#heightBox").value;
 		var xhttp = new XMLHttpRequest();
 		
-		xhttp.open("GET", "http://localhost:8080/310_Project2"+"/CollageBuilderServlet?topic="+topicString+"&shape="+shapeString+"&borders="+bordersOption+"&rotate="+rotateOption+"&width="+width+"&height="+height, true);
+		xhttp.open("GET", "http://localhost:8081/310_Project2"+"/CollageBuilderServlet?topic="+topicString+"&shape="+shapeString+"&borders="+bordersOption+"&rotate="+rotateOption+"&width="+width+"&height="+height, true);
 		xhttp.send();
 		
 		//use this for animated busy symbol - state to indicate ready
@@ -240,3 +240,28 @@ document.getElementById("shapeBox")
 function filter() {
 	document.querySelector("#collageImage").style.filter = document.getElementById("filterValue").value; 
 }
+
+/*Save collage as PNG */
+document.querySelector("#exportBtnPng").onclick = function() {
+	var image = document.querySelector("#collageImage").src;
+	var topicString = document.querySelector("#topicBox").value;
+	
+	var a = document.createElement('a');
+	a.href = image;
+	a.download = topicString + ".png";
+	a.click();
+
+}
+
+/*Save collage as PDF */
+document.querySelector("#exportBtnPdf").onclick = function() {
+	var image = document.querySelector("#collageImage").src;
+	var topicString = document.querySelector("#topicBox").value;
+	var width = document.querySelector("#widthBox").value;
+	var height = document.querySelector("#heightBox").value;
+	
+	var doc = new jsPDF();
+	doc.addImage(image, 'PNG', 15, 40, width, height);
+	doc.save(topicString + '.pdf');
+}
+
