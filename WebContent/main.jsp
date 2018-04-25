@@ -35,12 +35,13 @@
 						<div id="dropdownContainer">
 						<select id="filterValue" onchange="filter()">
 						  <option value="none"> Normal </option>
-						  <option value="grayscale(100%)">Black & White </option>
-						  <option value="sepia(100%)">Sepia</option>
-						  <option value="grayscale(50%)">Grayscale</option>
+						  <option value="grayscale100">Black & White </option>
+						  <option value="sepia">Sepia</option>
+						  <option value="grayscale50">Grayscale</option>
 						</select>
 						</div>
 					</div>
+					
 					
 					<div class="horizRow">
 						<label for="borderBox"> Borders </label>

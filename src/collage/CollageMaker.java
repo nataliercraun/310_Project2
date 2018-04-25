@@ -127,11 +127,15 @@ public class CollageMaker {
 		
 		//Vector of scaled images
 		Vector<BufferedImage> destImages = new Vector<BufferedImage>();
+		int i = 0;
 		for(BufferedImage bi : sourceImages)
 		{
-			if(borders)
-				bi = borderImage(bi);
-			destImages.add(destImages.size(), scaleImage(bi));
+			System.out.println("In source Images: " + i++);
+			if (bi != null) {
+				if(borders)
+					bi = borderImage(bi);
+				destImages.add(destImages.size(), scaleImage(bi));
+			}
 		}
 		
 		Graphics g = shape.getGraphics();
@@ -159,8 +163,8 @@ public class CollageMaker {
 		}
 		Color myWhite = new Color(255, 255, 255); // Color white
 		int white = myWhite.getRGB();
-		File of = new File("localImages/aaa.png");
-		ImageIO.write(copy, "png", of);
+//		File of = new File("localImages/aaa.png");
+//		ImageIO.write(copy, "png", of);
 		
 		if(filter == 3)
 			shape = toSepia(shape);

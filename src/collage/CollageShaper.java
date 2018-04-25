@@ -71,8 +71,8 @@ public class CollageShaper {
 		tl.draw(g2, 0, 0);
 		
 		//testing
-		File of = new File("localImages/testShape.png");
-		ImageIO.write(image, "png", of);
+//		File of = new File("localImages/testShape.png");
+//		ImageIO.write(image, "png", of);
 		return image;
 	}
 	

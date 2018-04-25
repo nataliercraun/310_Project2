@@ -17,7 +17,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 	} else {
 		// No user is signed in.
 		window.location.href = "login.jsp";
-		alert("You were logged out.");
 	}
 });
 
@@ -79,9 +78,10 @@ document.querySelector("#buildCollageBtn").onclick = function() {
 		var rotateOption = document.querySelector("#rotateBox").checked;
 		var width = document.querySelector("#widthBox").value;
 		var height = document.querySelector("#heightBox").value;
+		var filter = document.querySelector("#filterValue").value;
 		var xhttp = new XMLHttpRequest();
 		
-		xhttp.open("GET", "http://localhost:8080/310_Project2"+"/CollageBuilderServlet?topic="+topicString+"&shape="+shapeString+"&borders="+bordersOption+"&rotate="+rotateOption+"&width="+width+"&height="+height, true);
+		xhttp.open("GET", "http://localhost:8080/310_Project2"+"/CollageBuilderServlet?topic="+topicString+"&shape="+shapeString+"&borders="+bordersOption+"&rotate="+rotateOption+"&width="+width+"&height="+height+"&filter="+filter, true);
 		xhttp.send();
 		
 		//use this for animated busy symbol - state to indicate ready
