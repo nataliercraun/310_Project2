@@ -12,11 +12,9 @@
 	</head>
 	<body onload="updateGalleryArray();">
 	<div id= "topContainer">
-		<h1 id="header">
-		</h1>
+		<button id="logOutBtn" class="btn btn-secondary"> Log Out </button>
 	</div>
 	<br><br><br><br>
-		<button id="logOutBtn" class="btn btn-secondary"> Log Out </button>
 		<div id="container">
 			<div id="leftContainer">
 				<div class="horizRow">
