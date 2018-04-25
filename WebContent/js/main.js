@@ -21,24 +21,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 	}
 });
 
-/* Function to change collage width */
-document.querySelector("#widthSubmit").onclick = function() {
-	if (document.querySelector("#widthBox").value > 500) {
-		alert("Value greater than 500px")
-	} else {
-		document.querySelector("#collageImage").style.width = document.querySelector("#widthBox").value + 'px'; 
-	}
-}
-
-/* Function to change collage height */
-document.querySelector("#heightSubmit").onclick = function() {
-	if (document.querySelector("#heightBox").value > 500) {
-		alert("Value greater than 500px"); 
-	} else {
-		document.querySelector("#collageImage").style.height = document.querySelector("#heightBox").value + 'px'; 
-	}
-}
-
 /* Function to log out user */
 document.querySelector("#logOutBtn").onclick = function() {
 	firebase.auth().signOut().then(function() {
@@ -235,11 +217,6 @@ document.getElementById("shapeBox")
         document.getElementById("buildCollageBtn").click();
     }
 });
-
-/* Collage Options Filter Effects */
-function filter() {
-	document.querySelector("#collageImage").style.filter = document.getElementById("filterValue").value; 
-}
 
 /*Save collage as PNG */
 document.querySelector("#exportBtnPng").onclick = function() {
