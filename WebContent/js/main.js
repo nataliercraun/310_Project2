@@ -71,7 +71,7 @@ document.querySelector("#collageOptionsBtn").onclick = function() {
 document.querySelector("#buildCollageBtn").onclick = function() {
 	if ((document.querySelector("#shapeBox").value != '') && (document.querySelector("#topicBox").value != '')) {
 		console.log("build collage button pressed");
-		document.querySelector("#wrapper").innerHTML = "<div class='loader'></div>"; 
+		document.querySelector("#wrapper").innerHTML = "<div id='maxSizeCollageContainer'> <div id='collageContainer' class='row'> <div id='collageDisplay' class='item'> <div class='loader'></div></div></div></div>"; 
 		/* This is where we need to send data to the servlet and generate the letter shaped collage */
 		var topicString = document.querySelector("#topicBox").value;
 		var shapeString = document.querySelector("#shapeBox").value;
@@ -87,7 +87,7 @@ document.querySelector("#buildCollageBtn").onclick = function() {
 		//use this for animated busy symbol - state to indicate ready
 		xhttp.onreadystatechange = function() {
 			if (xhttp.responseText.length > 0){
-				document.querySelector("#wrapper").innerHTML = "<div id='maxSizeCollageContainer'> <div id='collageContainer' class='row'> <div id='collageDisplay' class='item'> <img id='collageImage' src=''></div></div></div></div>"; 
+				document.querySelector("#collageDisplay").innerHTML = "<img id='collageImage' src=''>"; 
 				document.querySelector("#collageImage").src = xhttp.responseText;
 				if (document.querySelector("#widthBox").value > 500) {
 					alert("Value greater than 500px")
