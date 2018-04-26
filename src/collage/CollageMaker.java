@@ -199,7 +199,11 @@ public class CollageMaker {
 	}
 	private BufferedImage scaleImage(BufferedImage orig) {
 		// Each image scaled to tileWidth x tileHeight
-		BufferedImage scaledImage = new BufferedImage(tileWidth, tileHeight, orig.getType());
+		BufferedImage scaledImage;
+		if (orig.getType() == 0) 
+			scaledImage = new BufferedImage(tileWidth, tileHeight, 5);
+		else
+			scaledImage = new BufferedImage(tileWidth, tileHeight, orig.getType());
 		Graphics g = scaledImage.getGraphics();
 		g.drawImage(orig, 0, 0, tileWidth, tileHeight, null);
 		g.dispose();

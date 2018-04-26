@@ -20,8 +20,10 @@ import org.json.JSONObject;
 public class ImageSourcer {
 
 	// Configuration Variables
-	private final int REQUIRED_IMAGES = 80; // Number of images needed to build collage
-	private final String API_KEY = "AIzaSyDAIJUGXTW2xycBMmHd1rSTMl8T0p2jUjc"; // Google API key
+	private final int REQUIRED_IMAGES = 30; // Number of images needed to build collage
+	private final String API_KEY = "AIzaSyDFDlc5JaxhMz84gpH0zqPjGayNqt7jxdM"; // Google API key
+//	AIzaSyDAIJUGXTW2xycBMmHd1rSTMl8T0p2jUjc old
+//	AIzaSyDFDlc5JaxhMz84gpH0zqPjGayNqt7jxdM
 	private final String SEARCH_ENGINE_KEY = "004843956391315063069:wnj8zpugysm"; // Custom Search Engine key provided by Google
 	private final String SEARCH_FILETYPES = "png,jpg"; // Desired file types for search
 	private final int GOOGLE_SEARCH_LIMIT = 10; // Google only allows 10 images returned per query
@@ -119,7 +121,10 @@ public class ImageSourcer {
 					imageURL = new URL(imageURLs.get(i));
 					BufferedImage img = ImageIO.read(imageURL);
 					// Store in Vector<BufferedImage>
-					images.add(img);
+					if (img != null) {
+						System.out.println("Img TYPE: " + img.getType());
+						images.add(img);
+					}
 				} catch (MalformedURLException e) {
 					
 				} catch (IOException e) {
