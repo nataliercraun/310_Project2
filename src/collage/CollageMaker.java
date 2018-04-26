@@ -150,7 +150,7 @@ public class CollageMaker {
 				int pixel = shape.getRGB(x, y);
 				if (pixel == -16711936) {
 					AffineTransform at = new AffineTransform();
-					at.translate(xPos - tileWidth/2, yPos);					
+					at.translate(xPos - tileWidth/2, yPos);				
 					g2d.drawImage(destImages.elementAt(numPlaced), at, null);
 					numPlaced++;
 					if(numPlaced >=sourceImages.size())
