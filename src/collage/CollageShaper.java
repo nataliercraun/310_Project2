@@ -21,6 +21,7 @@ public class CollageShaper {
 	public int width;
 	public int height;
 	Shape ol;
+	
 	public CollageShaper(int w, int h) throws IOException
 	{
 		width = w; height = h;
@@ -39,10 +40,17 @@ public class CollageShaper {
 		FontMetrics fm = g2.getFontMetrics(f);
 		int stringWidth = fm.stringWidth(userInput);
 		
+		while( stringWidth < width )
+		{
+			f = f.deriveFont(f.getSize() * 1.2f);
+			fm = g2.getFontMetrics(f);
+			stringWidth = fm.stringWidth(userInput);
+		}
+		
 		//dynamic sizing of font based on string length and window size
 		while(stringWidth > width)
 		{
-			f = f.deriveFont((float) (f.getSize() * 0.8));
+			f = f.deriveFont((float) (f.getSize() * 0.9));
 			fm = g2.getFontMetrics(f);
 			stringWidth = fm.stringWidth(userInput);
 		}		
