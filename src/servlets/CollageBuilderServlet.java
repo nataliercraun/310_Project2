@@ -48,13 +48,13 @@ public class CollageBuilderServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String topic = request.getParameter("topic");
-		System.out.println(topic);
 		String shape = request.getParameter("shape");
-		System.out.println(shape);
 		String borders = request.getParameter("borders");
-		boolean bordersBoolean = borders.equals("on");
+		boolean bordersBoolean = borders.equals("true");
+		System.out.println("Borders: " + borders);
 		String rotate = request.getParameter("rotate");
-		boolean rotationBoolean = rotate.equals("on");
+		System.out.println("Rotation: " + rotate);
+		boolean rotationBoolean = rotate.equals("true");
 		String width = request.getParameter("width");
 		String filter = request.getParameter("filter");
 		int filterNum;
@@ -90,13 +90,12 @@ public class CollageBuilderServlet extends HttpServlet {
 		//Init pieces of collage process
 		imageSourcer = new ImageSourcer();
 		collageShaper = new CollageShaper(widthInt, heightInt);
-		imageSourcer = new ImageSourcer();
 		collageMaker = new CollageMaker();
-
 		
 		//get shape
 		BufferedImage collageShape = collageShaper.getShape(shape);
 		Vector<BufferedImage> images = imageSourcer.getImages(topic);
+		
 		BufferedImage collage = collageMaker.makeCollage(collageShape, images, rotationBoolean, bordersBoolean, filterNum);
 		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
