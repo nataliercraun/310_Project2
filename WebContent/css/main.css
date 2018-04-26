@@ -146,7 +146,7 @@ input, label {
 	
 	visibility: hidden; 
 
-	margin-left: 20px; 
+	margin-left: 10%; 
 	/* Flex stuff */ 
 	display: flex;
 	flex-direction: column;
@@ -174,7 +174,6 @@ input, label {
 	width: 100%;
 	height: 30%; 
 	box-sizing: border-box;
-	margin-left: 25%; 
 	margin-top: 10px;
 	justify-content: center;	
 }
