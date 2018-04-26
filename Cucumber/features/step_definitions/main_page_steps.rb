@@ -1,9 +1,10 @@
 When(/^I open mainpage$/) do
-	visit 'http://localhost:8081/310_Project2/main.jsp'
+	visit 'http://localhost:8080/310_Project2/main.jsp'
 end
 
 Then(/^I see "([^"]*)" on attribute "([^"]*)" on id "([^"]*)"$/) do |arg1, arg2, arg3|
-  	puts(find(arg3)['id'])
+  	puts(find(arg3)[arg2])
+	expect(find(arg3)[arg2] == arg1).to be true 
 end
 
 When(/^I type "([^"]*)" into "([^"]*)"$/) do |arg1, arg2|
@@ -36,3 +37,9 @@ end
 Then (/^the "([^"]*)" should be disabled$/) do |arg1|
     find(arg1).should be_disabled
 end
+
+Then(/^I see "([^"]*)" on attribute "([^"]*)" on class "([^"]*)"$/) do |arg1, arg2, arg3|
+	puts(find(arg3)['class']) 
+  	expect(find(arg3)[arg2] == arg1).to be true 
+end
+
