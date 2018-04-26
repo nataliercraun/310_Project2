@@ -88,7 +88,7 @@ public class CollageBuilderServlet extends HttpServlet {
 			heightInt = Integer.parseInt(height);
 		}
 		//Init pieces of collage process
-		is = new ImageSourcer();
+		imageSourcer = new ImageSourcer();
 		collageShaper = new CollageShaper(widthInt, heightInt);
 		imageSourcer = new ImageSourcer();
 		collageMaker = new CollageMaker();
@@ -99,11 +99,6 @@ public class CollageBuilderServlet extends HttpServlet {
 		Vector<BufferedImage> images = imageSourcer.getImages(topic);
 		BufferedImage collage = collageMaker.makeCollage(collageShape, images, rotationBoolean, bordersBoolean, filterNum);
 		
-		//get images
-		Vector < BufferedImage > images;
-		images = is.getImages(topic);
-		
-		BufferedImage collage = cm.makeCollage(collageShape, images, false, false, 0);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
 		ImageIO.write(collage, "png", baos);

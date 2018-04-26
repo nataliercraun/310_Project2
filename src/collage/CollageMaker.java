@@ -113,7 +113,8 @@ public class CollageMaker {
 	
 	
 	public BufferedImage makeCollage(BufferedImage shape, Vector<BufferedImage> sourceImages, boolean rotation, boolean borders, int filter) throws IOException {
-		/*filters:
+		/*
+		 * filters:
 		 * 0: none
 		 * 1: grayscale
 		 * 2: B&W
@@ -150,11 +151,21 @@ public class CollageMaker {
 				int pixel = shape.getRGB(x, y);
 				if (pixel == -16711936) {
 					AffineTransform at = new AffineTransform();
-					at.translate(xPos - tileWidth/2, yPos);				
+					at.translate(xPos - tileWidth/2, yPos);
+					if(rotation)
+					{
+						double rotationValue = Math.random() * Math.PI / 8;
+						
+						if (rotationValue < 0) {
+							xPos -= Math.abs(Math.sin(rotationValue) * tileHeight);
+						} else if (rotationValue > 0) {
+							yPos -= Math.abs(Math.sin(rotationValue) * tileWidth);
+						}
+					}
 					g2d.drawImage(destImages.elementAt(numPlaced), at, null);
 					numPlaced++;
-					if(numPlaced >=sourceImages.size())
-						numPlaced-= sourceImages.size();
+					numPlaced = numPlaced % destImages.size();
+					
 					//testing
 					//File of = new File("localImages/testCollage"+numPlaced+".png");
 					//ImageIO.write(shape, "png", of);

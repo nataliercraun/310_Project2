@@ -39,6 +39,13 @@ public class CollageShaper {
 		FontMetrics fm = g2.getFontMetrics(f);
 		int stringWidth = fm.stringWidth(userInput);
 		
+		while(stringWidth < width )
+		{
+			f = f.deriveFont(f.getSize() + 1);
+			fm = g2.getFontMetrics(f);
+			stringWidth = fm.stringWidth(userInput);
+		}
+		
 		//dynamic sizing of font based on string length and window size
 		while(stringWidth > width)
 		{
@@ -47,12 +54,7 @@ public class CollageShaper {
 			stringWidth = fm.stringWidth(userInput);
 		}
 		
-		while(stringWidth < width * ( 3/4 ) )
-		{
-			f = f.deriveFont(f.getSize() + 1);
-			fm = g2.getFontMetrics(f);
-			stringWidth = fm.stringWidth(userInput);
-		}
+		
 		
 		//retrieve user's string and create textlayout
 		String s = new String(userInput);
@@ -80,6 +82,7 @@ public class CollageShaper {
 	{
 		return ol;
 	}
+	
 //test main
 //	public static void main(String args[]) throws IOException
 //	{
