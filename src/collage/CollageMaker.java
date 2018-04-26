@@ -154,7 +154,8 @@ public class CollageMaker {
 					at.translate(xPos, yPos);
 					if(rotation)
 					{
-						double rotationValue = Math.random() * Math.PI / 8;
+						double rotationValue = Math.random() * Math.PI / 4;
+						rotationValue -= Math.PI / 8;
 						
 						if (rotationValue < 0) {
 							xPos -= Math.abs(Math.sin(rotationValue) * tileHeight);
