@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import collage.CollageShaper;
+import collage.ImageSourcer;
+import collage.CollageMaker;
 
 /**
  * Servlet implementation class JDBCServlet
@@ -23,6 +26,8 @@ public class CollageBuilderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	CollageShaper collageShaper;
+	ImageSourcer imageSourcer;
+	CollageMaker collageMaker;
        
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -40,10 +45,26 @@ public class CollageBuilderServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String topic = request.getParameter("topic");
+		System.out.println(topic);
 		String shape = request.getParameter("shape");
+		System.out.println(shape);
 		String borders = request.getParameter("borders");
+		boolean bordersBoolean = borders.equals("on");
 		String rotate = request.getParameter("rotate");
+		boolean rotationBoolean = rotate.equals("on");
 		String width = request.getParameter("width");
+		String filter = request.getParameter("filter");
+		int filterNum;
+		if (filter.equals("grayscale50")) {
+			filterNum = 1;
+		} else if (filter.equals("grayscale100")) {
+			filterNum = 2;
+		} else if (filter.equals("sepia")) {
+			filterNum = 3;
+		} else {
+			filterNum = 0;
+		}
+		
 		int widthInt;
 		if(width == null)
 		{
@@ -65,11 +86,15 @@ public class CollageBuilderServlet extends HttpServlet {
 		}
 		
 		collageShaper = new CollageShaper(widthInt, heightInt);
+		imageSourcer = new ImageSourcer();
+		collageMaker = new CollageMaker();
 		
 		BufferedImage collageShape = collageShaper.getShape(shape);
+		Vector<BufferedImage> images = imageSourcer.getImages(topic);
+		BufferedImage collage = collageMaker.makeCollage(collageShape, images, rotationBoolean, bordersBoolean, filterNum);
 		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ImageIO.write(collageShape, "png", baos);
+		ImageIO.write(collage, "png", baos);
 		baos.flush();
 		byte[] imageInByteArray = baos.toByteArray();
 		baos.close();

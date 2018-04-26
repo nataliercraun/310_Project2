@@ -229,6 +229,7 @@ input, label {
 .loader {
 	border: 16px solid #f3f3f3;
 	border-top: 16px solid #3498db;
+	top: 200px;
 	border-radius: 50%;
 	width: 60px;
 	height: 60px;
@@ -309,5 +310,11 @@ input, label {
 }
 
 .collageHistoryImageContainer:hover .collageDeleteButton {
-	opacity: 1.0;	
+	opacity: 1.0;
+	color: #494949;
+}
+
+.collageHistoryImageContainer .collageDeleteButton:hover {
+	opacity: 1.0;
+	color: red;
 }
