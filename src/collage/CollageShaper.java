@@ -39,12 +39,14 @@ public class CollageShaper {
 		Font f = new Font("Helvetica", 1, 210 );
 		FontMetrics fm = g2.getFontMetrics(f);
 		int stringWidth = fm.stringWidth(userInput);
+		int stringHeight = fm.getHeight();
 		
-		while( stringWidth < width * (.8) )
+		while( stringWidth < width * (.8) && stringHeight < height * (.8) )
 		{
 			f = f.deriveFont(f.getSize() * 1.2f);
 			fm = g2.getFontMetrics(f);
 			stringWidth = fm.stringWidth(userInput);
+			stringHeight = fm.getHeight();
 		}
 		
 		//dynamic sizing of font based on string length and window size
