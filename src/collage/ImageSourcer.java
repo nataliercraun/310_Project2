@@ -119,6 +119,7 @@ public class ImageSourcer {
 					imageURL = new URL(imageURLs.get(i));
 					BufferedImage img = ImageIO.read(imageURL);
 					// Store in Vector<BufferedImage>
+					System.out.println("Img TYPE: " + img.getType());
 					images.add(img);
 				} catch (MalformedURLException e) {
 					
