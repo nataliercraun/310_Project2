@@ -43,3 +43,10 @@ Then(/^I see "([^"]*)" on attribute "([^"]*)" on class "([^"]*)"$/) do |arg1, ar
   	expect(find(arg3)[arg2] == arg1).to be true 
 end
 
+Then(/^I see a png extension on attribute "([^"]*)" of id "([^"]*)"$/) do |arg1, arg2|
+	puts(find("#topicBox")['src']+'.png')
+	puts(find(arg2)[arg1])
+  	expect(find("#topicBox")['src']+'.png' == find(arg2)[arg1]).to be true
+end
+
+

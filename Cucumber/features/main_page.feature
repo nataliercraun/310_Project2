@@ -57,7 +57,7 @@ Scenario: Main Web Page has an export collage button
 Scenario: If the user clicks the Collage Options button, an options menu appears
 	When I open mainpage
 	And I click "#collageOptionsBtn"
-	Then I see "block" on attribute "display" on class "#optionsMenu"
+	Then I see "optionsMenu" on attribute "id" on id "#optionsMenu"
 
 Scenario: An animated busy symbol should appear while the collage is being generated 
 
@@ -67,6 +67,15 @@ Scenario: An animated busy symbol should appear while the collage is being gener
 	And I click "#buildCollageBtn"
 	Then I see "loader" on attribute "class" on id ".loader"
 
+Scenario: When you select download as png, the image downloaded is of type .png
+
+	When I open mainpage
+	And I type "banana" into "#topicBox"
+	And I type "o" into "#shapeBox"
+	And I click "#buildCollageBtn"
+	And I click "#exportBtnPng"
+	Then I see a png extension on attribute "download" of id "#asPng"
+
 Scenario: If the user clicks the logout button, they are directed back to the login page  
 
 	When I open mainpage
@@ -75,7 +84,6 @@ Scenario: If the user clicks the logout button, they are directed back to the lo
 	Then I see an alert that says "You were logged out."
 
 
-	
 	
 	
 
