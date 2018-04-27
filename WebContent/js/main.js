@@ -224,6 +224,7 @@ document.querySelector("#exportBtnPng").onclick = function() {
 	var topicString = document.querySelector("#topicBox").value;
 	
 	var a = document.createElement('a');
+	a.id = "asPng"; 
 	a.href = image;
 	a.download = topicString + ".png";
 	a.click();
