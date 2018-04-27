@@ -21,7 +21,7 @@ public class ImageSourcer {
 
 	// Configuration Variables
 	private final int REQUIRED_IMAGES = 30; // Number of images needed to build collage
-	private final String API_KEY = "AIzaSyDFDlc5JaxhMz84gpH0zqPjGayNqt7jxdM"; // Google API key
+	private final String API_KEY = "AIzaSyDhoXX57SRkKMzdj-D0NUmseFEsb62pRdg"; // Google API key
 //	AIzaSyDAIJUGXTW2xycBMmHd1rSTMl8T0p2jUjc old
 //	AIzaSyDFDlc5JaxhMz84gpH0zqPjGayNqt7jxdM
 	private final String SEARCH_ENGINE_KEY = "004843956391315063069:wnj8zpugysm"; // Custom Search Engine key provided by Google

@@ -42,9 +42,17 @@ public class CollageCompositionTest{
 	@Test
 	//Test case of collage creation from collage shape
 	public void testMakeCollage() throws IOException{
-		BufferedImage testCollage = CMTest.makeCollage(CSHelper.getShape("test alpha"), images, false, false, 0);
+		BufferedImage testCollage = CMTest.makeCollage(CSHelper.getShape("a"), images, true, false, 0);
 		File of = new File("localImages/testCollage.png");
 		ImageIO.write(testCollage, "png", of);
 		assert(testCollage != null);
+	}
+	
+	@Test
+	public void testSepia() throws IOException
+	{
+		BufferedImage testCollage = CMTest.makeCollage(CSHelper.getShape("a"), images, true, false, 0);
+		BufferedImage scaledImage = CMTest.toSepia(testCollage);
+		assert(scaledImage != null);
 	}
 }
